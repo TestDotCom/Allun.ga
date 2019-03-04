@@ -1,0 +1,39 @@
+{
+    "name": "ReactJS-PHP-boilerplate",
+    "version": "1.0.0",
+    "description": "Setup PHP/ReactJS",
+    "main": "index.js",
+    "keywords": [
+        "boilerplate",
+        "php",
+        "react"
+    ],
+    "author": "TestDotCom",
+    "license": "GNU GPLv3",
+    "scripts": {
+        "prestart": "pkill php; php -S localhost:8000 -t api/ > api/logs/php.log 2>&1 &",
+        "clean": "rm dist/bundle.js",
+        "build-dev": "webpack -d --mode development",
+        "build-prod": "webpack -p --mode production",
+        "start": "webpack-dev-server --hotOnly --mode development"
+    },
+    "dependencies": {
+        "@hot-loader/react-dom": "^16.8.3",
+        "@material-ui/core": "^4.0.0-alpha.2",
+        "@material-ui/icons": "^4.0.0-alpha.1",
+        "axios": "^0.18.0",
+        "react": "^16.8.2",
+        "react-dom": "^16.8.2",
+        "react-hot-loader": "^4.7.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.3.3",
+        "@babel/plugin-proposal-class-properties": "^7.3.4",
+        "@babel/preset-env": "^7.3.1",
+        "@babel/preset-react": "^7.0.0",
+        "babel-loader": "^8.0.5",
+        "webpack": "^4.29.5",
+        "webpack-cli": "^3.2.3",
+        "webpack-dev-server": "^3.2.0"
+    }
+}

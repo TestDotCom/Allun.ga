@@ -1,4 +1,20 @@
-PHP 7.3.2 Development Server started at Tue Mar  5 12:01:47 2019
+[Tue Mar  5 20:22:18 2019] [::1]:49168 [200]: /index.php
+[Tue Mar  5 20:22:18 2019] [::1]:49170 [200]: /index.php
+[Tue Mar  5 20:25:19 2019] [::1]:50712 [200]: /index.php
+[Tue Mar  5 20:25:19 2019] [::1]:50714 [200]: /index.php
+[Tue Mar  5 20:27:09 2019] [::1]:51610 [200]: /index.php
+[Tue Mar  5 20:27:09 2019] [::1]:51612 [200]: /index.php
+[Tue Mar  5 20:28:19 2019] [::1]:52190 [200]: /index.php
+[Tue Mar  5 20:28:19 2019] [::1]:52192 [200]: /index.php
+[Tue Mar  5 20:28:47 2019] [::1]:52428 [200]: /index.php
+[Tue Mar  5 20:28:47 2019] [::1]:52430 [200]: /index.php
+[Tue Mar  5 20:29:10 2019] [::1]:52632 [200]: /index.php
+[Tue Mar  5 20:29:10 2019] [::1]:52634 [200]: /index.php
+[Tue Mar  5 20:30:00 2019] [::1]:53052 [200]: /index.php
+[Tue Mar  5 20:30:00 2019] [::1]:53054 [200]: /index.php
+[Tue Mar  5 20:33:04 2019] [::1]:54556 [200]: /index.php
+[Tue Mar  5 20:33:04 2019] [::1]:54558 [200]: /index.php
+PHP 7.3.2 Development Server started at Tue Mar  5 20:22:10 2019
 Listening on http://localhost:8000
-Document root is /srv/http/allun.ga/api
+Document root is /srv/http/test/Allun.ga/api
 Press Ctrl-C to quit.

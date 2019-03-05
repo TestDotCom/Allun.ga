@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Button from '@material-ui/core/Button';
 
 import { 
     withStyles,
@@ -14,14 +13,13 @@ import {
     Typography,
     TextField,
     Grid,
-    CardMedia
+    Button
 } from '@material-ui/core';
 
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const styles = theme => ({
-
     root: {
         flexGrow: 1,
     },
@@ -46,7 +44,6 @@ const styles = theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -68,8 +65,6 @@ const styles = theme => ({
     input: {
         display: 'none',
     },
-  
-
 });
 
 function RecipeReviewCard({classes}) {
@@ -89,12 +84,14 @@ function RecipeReviewCard({classes}) {
                         margin="dense"
                         variant="outlined"
                     />
-
-                    <Button variant="outlined" className={classes.button}>
-                        <Typography variant="button"><strong>go!</strong></Typography>
+                    <Button 
+                        variant="outlined" 
+                        className={classes.button}
+                    >
+                        <Typography variant="button">
+                            <strong>go!</strong>
+                        </Typography>
                     </Button>
-
-
                 </CardContent>
                 <CardActions 
                     className={classes.actions} 

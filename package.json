@@ -1,15 +1,15 @@
 {
-    "name": "ReactJS-PHP-boilerplate",
-    "version": "1.0.0",
-    "description": "Setup PHP/ReactJS",
-    "main": "index.js",
+    "name": "Allun-ga",
+    "version": "1.0.1",
+    "description": "Succint URL shortner",
+    "main": "Index.jsx",
     "keywords": [
-        "boilerplate",
+        "shortner",
         "php",
         "react"
     ],
     "author": "TestDotCom",
-    "license": "GNU GPLv3",
+    "license": "GPL-3.0-or-later",
     "scripts": {
         "prestart": "pkill php; php -S localhost:8000 -t api/ > api/logs/php.log 2>&1 &",
         "clean": "rm dist/bundle.js",
@@ -24,7 +24,7 @@
         "axios": "^0.18.0",
         "react": "^16.8.2",
         "react-dom": "^16.8.2",
-        "react-hot-loader": "^4.7.1"
+        "react-hot-loader": "^4.7.2"
     },
     "devDependencies": {
         "@babel/core": "^7.3.3",

@@ -82,7 +82,7 @@ $connection = new mysqli("localhost", "test", "", "test");
         /**
      * Starts the program.
      */
-    public function run() {
+    function run() {
         $q = str_replace('/', '', $_GET['q']);
 
         $url = '';
@@ -149,7 +149,7 @@ $connection = new mysqli("localhost", "test", "", "test");
             }
 
             if (preg_match('/^([a-zA-Z0-9]+)$/', $q, $matches)) {
-                $id = self::decode($matches[1]);
+                //$id = self::decode($matches[1]);
 
                 $result = $this->fetch($id);
 

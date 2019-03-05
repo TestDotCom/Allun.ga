@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import Button from '@material-ui/core/Button';
 
 import { 
     withStyles,
@@ -12,53 +13,61 @@ import {
     IconButton,
     Typography,
     TextField,
-    Grid
+    Grid,
+    CardMedia
 } from '@material-ui/core';
 
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const styles = theme => ({
+
     root: {
         flexGrow: 1,
     },
-  card: {
-    width: 800,
-    maxWidth: 1000,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
+    card: {
+        width: 800,
+        maxWidth: 1000,
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
+    actions: {
+        display: 'flex',
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
 
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  dense: {
-    marginTop: theme.spacing(2),
-  },
-  menu: {
-    width: 200,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+    },
+    dense: {
+        marginTop: theme.spacing(2),
+    },
+    menu: {
+        width: 200,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+    button: {
+        margin: theme.spacing(1),
+    },
+    input: {
+        display: 'none',
+    },
   
 
 });
@@ -80,6 +89,12 @@ function RecipeReviewCard({classes}) {
                         margin="dense"
                         variant="outlined"
                     />
+
+                    <Button variant="outlined" className={classes.button}>
+                        <Typography variant="button"><strong>go!</strong></Typography>
+                    </Button>
+
+
                 </CardContent>
                 <CardActions 
                     className={classes.actions} 
@@ -105,22 +120,23 @@ function RecipeReviewCard({classes}) {
                     unmountOnExit
                 >
                     <CardContent>
-                        <Typography paragraph>
+                        <Typography variant="h6" gutterBottom>
                             Customize your URL!
                         </Typography>
                     </CardContent>
                     <CardContent>
                         <Grid container spacing={3}>
-                            <Grid item xs>
+                            <Grid item xs={2}>
                                 <TextField
-                                    id="outlined-read-only-input"
+                                    id="outlined-dense"
+                                    className={clsx(classes.textField, classes.dense)}
+                                    margin="dense"
+                                    variant="outlined"
                                     defaultValue="allun.ga/"
-                                    className={classes.textField}
-                                    margin="normal"
                                     InputProps={{
                                         readOnly: true,
                                     }}
-                                    variant="outlined"
+                                    
                                 />
                             </Grid>
                             <Grid item xs={10}>
@@ -131,6 +147,11 @@ function RecipeReviewCard({classes}) {
                                     margin="dense"
                                     variant="outlined"
                                 />
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Button variant="contained" color="primary" className={classes.button}>
+                                    <Typography variant="button"><strong>go!</strong></Typography>
+                                </Button>
                             </Grid>
                         </Grid>
                     </CardContent>

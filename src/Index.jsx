@@ -11,6 +11,8 @@ if (urlSplit[3] != "") {
     // TODO CALL PHP
 }
 
+  
+
 ReactDOM.render(<App />, document.getElementById("app"));
 
 module.hot.accept();

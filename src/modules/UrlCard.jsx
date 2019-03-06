@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import Axios from 'axios';
 
 import { 
     withStyles,
@@ -26,10 +27,6 @@ const styles = theme => ({
     card: {
         width: 800,
         maxWidth: 1000,
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
     },
     actions: {
         display: 'flex',
@@ -67,31 +64,58 @@ const styles = theme => ({
     },
 });
 
-function RecipeReviewCard({classes}) {
+function UrlCard({classes}) {
     const [expanded, setExpanded] = useState(false)
+    const [url, setUrl] = useState("")
+    const [keyword, setKeyword] = useState("")
+
+    const handleClick = _ => {
+        Axios({
+            method: 'post',
+            url: process.env.API_URL,
+            headers: { 'content-type': 'application/json' },
+            data: { 
+                url: url,
+                keyword: keyword,
+                action: "shrink"
+            }
+        }).then(result => {
+            console.log(result);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
 
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
                 <CardHeader title="allun.ga" />
                 <CardContent>
-                    <TextField
-                        id="outlined-full-width-dense"
-                        label="insert link"
-                        className={clsx(classes.textField, classes.dense)}
-                        style={{ margin: 8 }}
-                        fullWidth
-                        margin="dense"
-                        variant="outlined"
-                    />
-                    <Button 
-                        variant="outlined" 
-                        className={classes.button}
-                    >
-                        <Typography variant="button">
-                            <strong>go!</strong>
-                        </Typography>
-                    </Button>
+                    <form 
+                        className={classes.container}
+                        noValidate
+                        autoComplete="off"
+                    >   
+                        <TextField
+                            id="outlined-full-width-dense"
+                            label="insert link"
+                            className={clsx(classes.textField, classes.dense)}
+                            style={{ margin: 8 }}
+                            fullWidth
+                            margin="dense"
+                            variant="outlined"
+                            onChange={e => setUrl(e.target.value)}
+                        />
+                        <Button 
+                            variant="outlined" 
+                            className={classes.button}
+                            onClick={() => handleClick()}
+                        >
+                            <Typography variant="button">
+                                <strong>go!</strong>
+                            </Typography>
+                        </Button>
+                    </form>
                 </CardContent>
                 <CardActions 
                     className={classes.actions} 
@@ -130,10 +154,7 @@ function RecipeReviewCard({classes}) {
                                     margin="dense"
                                     variant="outlined"
                                     defaultValue="allun.ga/"
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    
+                                    InputProps={{ readOnly: true }}
                                 />
                             </Grid>
                             <Grid item xs={10}>
@@ -143,11 +164,20 @@ function RecipeReviewCard({classes}) {
                                     className={clsx(classes.textField, classes.dense)}
                                     margin="dense"
                                     variant="outlined"
+                                    onChange={e => setKeyword(e.target.value)}
+
                                 />
                             </Grid>
                             <Grid item xs={2}>
-                                <Button variant="contained" color="primary" className={classes.button}>
-                                    <Typography variant="button"><strong>go!</strong></Typography>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    className={classes.button}
+                                    onClick={() => handleClick()}
+                                >
+                                    <Typography variant="button">
+                                        <strong>go!</strong>
+                                    </Typography>
                                 </Button>
                             </Grid>
                         </Grid>
@@ -158,8 +188,8 @@ function RecipeReviewCard({classes}) {
     );
 }
 
-RecipeReviewCard.propTypes = {
+UrlCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RecipeReviewCard);
+export default withStyles(styles)(UrlCard);

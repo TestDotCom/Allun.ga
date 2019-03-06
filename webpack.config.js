@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 const config = {
     entry: './src/Index.jsx',
@@ -12,7 +13,7 @@ const config = {
             test: /\.(js|jsx)$/,
             exclude: /(node_modules|api)/,
             use: 'babel-loader'
-        }]
+        }],
     },
     resolve: {
         extensions: [
@@ -25,7 +26,10 @@ const config = {
     },
     devServer: {
         contentBase: './dist'
-    }
+    },
+    plugins: [
+        new Dotenv()
+    ]
 }
 
 module.exports = config;

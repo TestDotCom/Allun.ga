@@ -18,21 +18,22 @@
         "start": "webpack-dev-server --hotOnly --mode development"
     },
     "dependencies": {
-        "@hot-loader/react-dom": "^16.8.3",
         "@material-ui/core": "^4.0.0-alpha.2",
         "@material-ui/icons": "^4.0.0-alpha.1",
         "axios": "^0.18.0",
         "dotenv-webpack": "^1.7.0",
         "react": "^16.8.4",
         "react-dom": "^16.8.4",
-        "react-hot-loader": "^4.7.2"
+        "react-router-dom": "^4.3.1"
     },
     "devDependencies": {
         "@babel/core": "^7.3.3",
         "@babel/plugin-proposal-class-properties": "^7.3.4",
         "@babel/preset-env": "^7.3.1",
         "@babel/preset-react": "^7.0.0",
+        "@hot-loader/react-dom": "^16.8.3",
         "babel-loader": "^8.0.5",
+        "react-hot-loader": "^4.7.2",
         "webpack": "^4.29.5",
         "webpack-cli": "^3.2.3",
         "webpack-dev-server": "^3.2.0"

@@ -66,8 +66,8 @@ const styles = theme => ({
 
 function UrlCard({classes}) {
     const [expanded, setExpanded] = useState(false)
-    const [url, setUrl] = useState("")
-    const [keyword, setKeyword] = useState("")
+    const [url, setUrl] = useState('')
+    const [keyword, setKeyword] = useState('')
 
     const handleClick = _ => {
         Axios({
@@ -77,7 +77,7 @@ function UrlCard({classes}) {
             data: { 
                 url: url,
                 keyword: keyword,
-                action: "shrink"
+                action: 'shrink'
             }
         }).then(result => {
             console.log(result);

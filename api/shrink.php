@@ -6,7 +6,7 @@
             $urlh = hash("crc32", $url);
 
             if (!($stmt = $mysqli->prepare(
-                "INSERT INTO url_mapping(shrink, expand) VALUES (?, ?) ON DUPLICATE KEY UPDATE shrink=VALUES(shrink), expand=VALUES(expand)"
+                "INSERT INTO url_mapping(shrink, expand) VALUES (?, ?) ON DUPLICATE KEY UPDATE id=id"
             ))) {
                 echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
             }

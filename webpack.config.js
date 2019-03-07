@@ -25,7 +25,9 @@ const config = {
         }
     },
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        // required for routing
+        historyApiFallback: true
     },
     plugins: [
         new Dotenv()

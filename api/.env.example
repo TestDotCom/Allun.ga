@@ -1,0 +1,4 @@
+HOST=""
+USERNAME=""
+PASSWORD=""
+DATABASE=""

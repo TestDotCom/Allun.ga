@@ -13,12 +13,11 @@ import {
     IconButton,
     Typography,
     TextField,
-    //Grid,
-    Button,
-    InputAdornment
+    Grid,
+    Button
 } from '@material-ui/core';
 
-//import ShareIcon from '@material-ui/icons/Share';
+import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const styles = theme => ({
@@ -66,10 +65,9 @@ const styles = theme => ({
 });
 
 function UrlCard({classes}) {
-    const [expanded, setExpanded] = useState(false);
-    const [url, setUrl] = useState('');
-    const [keyword, setKeyword] = useState('');
-    const [result, setResult] = useState('');
+    const [expanded, setExpanded] = useState(false)
+    const [url, setUrl] = useState('')
+    const [keyword, setKeyword] = useState('')
 
     const handleClick = _ => {
         Axios({
@@ -83,68 +81,9 @@ function UrlCard({classes}) {
             }
         }).then(result => {
             console.log(result);
-            setResult(result);
         }).catch(error => {
             console.log(error);
         });
-    }
-
-    const FormInput = _ => {
-        return(
-            <form 
-                className={classes.container}
-                noValidate
-                autoComplete="off"
-            >   
-                <TextField
-                    id="outlined-full-width-dense"
-                    label="insert link"
-                    className={clsx(classes.textField, classes.dense)}
-                    style={{ margin: 8 }}
-                    fullWidth
-                    margin="dense"
-                    variant="outlined"
-                    onChange={e => setUrl(e.target.value)}
-                />
-                <GoButton />
-            </form>
-        );
-    }
-
-    const CustomInput = _ => {
-        return(
-            <form 
-                className={classes.container}
-                noValidate
-                autoComplete="off"
-            > 
-                <TextField
-                    label="With normal TextField"
-                    id="simple-start-adornment"
-                    className={clsx(classes.margin, classes.textField)}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">allun.ga/</InputAdornment>,
-                    }}
-                    onChange={e => setKeyword(e.target.value)}
-                />
-                <GoButton />
-            </form>
-        );
-    }
-
-    const GoButton = _ => {
-        return(
-            <Button 
-                variant="contained" 
-                color="primary" 
-                className={classes.button}
-                onClick={() => handleClick()}
-            >
-                <Typography variant="button">
-                    <strong>go!</strong>
-                </Typography>
-            </Button>
-        );
     }
 
     return (
@@ -152,15 +91,39 @@ function UrlCard({classes}) {
             <Card className={classes.card}>
                 <CardHeader title="allun.ga" />
                 <CardContent>
-                    { !result ? <FormInput /> : null }
+                    <form 
+                        className={classes.container}
+                        noValidate
+                        autoComplete="off"
+                    >   
+                        <TextField
+                            id="outlined-full-width-dense"
+                            label="insert link"
+                            className={clsx(classes.textField, classes.dense)}
+                            style={{ margin: 8 }}
+                            fullWidth
+                            margin="dense"
+                            variant="outlined"
+                            onChange={e => setUrl(e.target.value)}
+                        />
+                        <Button 
+                            variant="outlined" 
+                            className={classes.button}
+                            onClick={() => handleClick()}
+                        >
+                            <Typography variant="button">
+                                <strong>go!</strong>
+                            </Typography>
+                        </Button>
+                    </form>
                 </CardContent>
                 <CardActions 
                     className={classes.actions} 
                     disableActionSpacing
                 >
-                    {/*<IconButton aria-label="Share">
+                    <IconButton aria-label="Share">
                         <ShareIcon />
-                    </IconButton>*/}
+                    </IconButton>
                     <IconButton
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,
@@ -183,7 +146,41 @@ function UrlCard({classes}) {
                         </Typography>
                     </CardContent>
                     <CardContent>
-                        <CustomInput />
+                        <Grid container spacing={3}>
+                            <Grid item xs={2}>
+                                <TextField
+                                    id="outlined-dense"
+                                    className={clsx(classes.textField, classes.dense)}
+                                    margin="dense"
+                                    variant="outlined"
+                                    defaultValue="allun.ga/"
+                                    InputProps={{ readOnly: true }}
+                                />
+                            </Grid>
+                            <Grid item xs={10}>
+                                <TextField
+                                    id="outlined-dense"
+                                    label="Custom endpoint"
+                                    className={clsx(classes.textField, classes.dense)}
+                                    margin="dense"
+                                    variant="outlined"
+                                    onChange={e => setKeyword(e.target.value)}
+
+                                />
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    className={classes.button}
+                                    onClick={() => handleClick()}
+                                >
+                                    <Typography variant="button">
+                                        <strong>go!</strong>
+                                    </Typography>
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </CardContent>
                 </Collapse>
             </Card>

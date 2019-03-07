@@ -13,11 +13,12 @@ import {
     IconButton,
     Typography,
     TextField,
-    Grid,
-    Button
+    //Grid,
+    Button,
+    InputAdornment
 } from '@material-ui/core';
 
-import ShareIcon from '@material-ui/icons/Share';
+//import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const styles = theme => ({
@@ -65,11 +66,12 @@ const styles = theme => ({
 });
 
 function UrlCard({classes}) {
-    const [expanded, setExpanded] = useState(false)
-    const [url, setUrl] = useState('')
-    const [keyword, setKeyword] = useState('')
+    const [expanded, setExpanded] = useState(false);
+    const [url, setUrl] = useState('');
+    const [keyword, setKeyword] = useState('');
+    const [result, setResult] = useState('');
 
-    const handleClick = _ => {
+    const handleSubmit = _ => {
         Axios({
             method: 'post',
             url: process.env.API_URL,
@@ -81,6 +83,7 @@ function UrlCard({classes}) {
             }
         }).then(result => {
             console.log(result);
+            setResult(result);
         }).catch(error => {
             console.log(error);
         });
@@ -92,24 +95,25 @@ function UrlCard({classes}) {
                 <CardHeader title="allun.ga" />
                 <CardContent>
                     <form 
-                        className={classes.container}
-                        noValidate
+                        noValidate 
                         autoComplete="off"
-                    >   
+                        onSubmit={handleSubmit}
+                    >
                         <TextField
-                            id="outlined-full-width-dense"
-                            label="insert link"
-                            className={clsx(classes.textField, classes.dense)}
-                            style={{ margin: 8 }}
-                            fullWidth
-                            margin="dense"
-                            variant="outlined"
+                            id="outlined-name"
+                            label="Name"
+                            className={classes.textField}
+                            value={url}
                             onChange={e => setUrl(e.target.value)}
+                            margin="normal"
+                            variant="outlined"
                         />
                         <Button 
-                            variant="outlined" 
+                            variant="contained" 
+                            color="primary" 
                             className={classes.button}
-                            onClick={() => handleClick()}
+                            label="Submit" 
+                            type="submit"
                         >
                             <Typography variant="button">
                                 <strong>go!</strong>
@@ -121,9 +125,9 @@ function UrlCard({classes}) {
                     className={classes.actions} 
                     disableActionSpacing
                 >
-                    <IconButton aria-label="Share">
+                    {/*<IconButton aria-label="Share">
                         <ShareIcon />
-                    </IconButton>
+                    </IconButton>*/}
                     <IconButton
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,
@@ -146,41 +150,14 @@ function UrlCard({classes}) {
                         </Typography>
                     </CardContent>
                     <CardContent>
-                        <Grid container spacing={3}>
-                            <Grid item xs={2}>
-                                <TextField
-                                    id="outlined-dense"
-                                    className={clsx(classes.textField, classes.dense)}
-                                    margin="dense"
-                                    variant="outlined"
-                                    defaultValue="allun.ga/"
-                                    InputProps={{ readOnly: true }}
-                                />
-                            </Grid>
-                            <Grid item xs={10}>
-                                <TextField
-                                    id="outlined-dense"
-                                    label="Custom endpoint"
-                                    className={clsx(classes.textField, classes.dense)}
-                                    margin="dense"
-                                    variant="outlined"
-                                    onChange={e => setKeyword(e.target.value)}
-
-                                />
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Button 
-                                    variant="contained" 
-                                    color="primary" 
-                                    className={classes.button}
-                                    onClick={() => handleClick()}
-                                >
-                                    <Typography variant="button">
-                                        <strong>go!</strong>
-                                    </Typography>
-                                </Button>
-                            </Grid>
-                        </Grid>
+                        <TextField
+                            label="Custom url"
+                            id="simple-start-adornment"
+                            className={clsx(classes.margin, classes.textField)}
+                            InputProps={{
+                                startAdornment: <InputAdornment position="start">allun.ga/</InputAdornment>,
+                            }}
+                        />
                     </CardContent>
                 </Collapse>
             </Card>

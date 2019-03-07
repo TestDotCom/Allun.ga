@@ -14,8 +14,8 @@
             
             echo json_encode([
                 "url" => $expand,
-                "urlh" => $url,
-                "db" => $mysqli->host_info
+                //"shrinkh" => $shrink,
+                //"db" => $mysqli->host_info
             ]);
         }
     }

@@ -19,7 +19,7 @@ import {
 } from '@material-ui/core';
 
 //import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
     root: {
@@ -46,22 +46,8 @@ const styles = theme => ({
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
     },
-    dense: {
-        marginTop: theme.spacing(2),
-    },
-    menu: {
-        width: 200,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
     button: {
         margin: theme.spacing(1),
-    },
-    input: {
-        display: 'none',
     },
 });
 
@@ -82,8 +68,8 @@ function UrlCard({classes}) {
                 action: 'shrink'
             }
         }).then(result => {
-            console.log(result);
-            setResult(result);
+            console.log(result.data.url);
+            setResult(result.data.url);
         }).catch(error => {
             console.log(error);
         });
@@ -97,10 +83,8 @@ function UrlCard({classes}) {
                     <form 
                         noValidate 
                         autoComplete="off"
-                        onSubmit={handleSubmit}
                     >
-                        
-                    <Grid container spacing={'auto'}>
+                    <Grid container spacing={3}>
                         <Grid item xs>
                         <TextField
                             id="outlined-name"
@@ -115,22 +99,17 @@ function UrlCard({classes}) {
                         <Grid item xs>
                         <TextField
                             id="readonlyOut"
-                            //label="Enter your long URL"
                             className={classes.textField}
-                            value={result}
-                            //onChange={e => setUrl(e.target.value)}
+                            value={'allun.ga/' + result}
                             margin="normal"
                             variant="outlined"
-                            disabled
                         />
                         </Grid>
-                        <Grid item xs={"auto"}></Grid>
                         <Button 
                             variant="contained" 
                             color="primary" 
                             className={classes.button}
-                            label="Submit" 
-                            type="submit"
+                            onClick={handleSubmit}
                         >
                             <Typography variant="button">
                                 <strong>go!</strong>
@@ -168,15 +147,15 @@ function UrlCard({classes}) {
                         </Typography>
                     </CardContent>
                     <CardContent>
-
                         <TextField
                             id="outlined-simple-start-adornment"
                             className={classes.textField}
                             variant="outlined"
                             onChange={e => setKeyword(e.target.value)}
+                            value={keyword}
                             label="Customize your url!"
                             InputProps={{
-                            startAdornment: <InputAdornment position="start">allun.ga/</InputAdornment>,
+                                startAdornment: <InputAdornment position="start">allun.ga/</InputAdornment>,
                             }}
                         />
                     </CardContent>

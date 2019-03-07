@@ -1,4 +1,84 @@
-PHP 7.3.2 Development Server started at Thu Mar  7 16:33:28 2019
-Listening on http://localhost:8000
-Document root is /srv/http/test/Allun.ga/api
-Press Ctrl-C to quit.
+[Thu Mar  7 21:20:02 2019] PHP Warning:  mysqli::__construct(): (HY000/2002): No such file or directory in /srv/http/test/Allun.ga/api/index.php on line 17
+[Thu Mar  7 21:20:02 2019] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 18
+[Thu Mar  7 21:20:02 2019] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 26
+[Thu Mar  7 21:20:02 2019] [::1]:47742 [200]: /index.php
+[Thu Mar  7 21:20:02 2019] PHP Warning:  mysqli::__construct(): (HY000/2002): No such file or directory in /srv/http/test/Allun.ga/api/index.php on line 17
+[Thu Mar  7 21:20:02 2019] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 18
+[Thu Mar  7 21:20:02 2019] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/shrink.php on line 9
+[Thu Mar  7 21:20:02 2019] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:20:02 2019] [::1]:47744 [200]: /index.php - Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:21:30 2019] PHP Warning:  mysqli::__construct(): (HY000/2002): No such file or directory in /srv/http/test/Allun.ga/api/index.php on line 17
+[Thu Mar  7 21:21:30 2019] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 18
+[Thu Mar  7 21:21:30 2019] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 26
+[Thu Mar  7 21:21:30 2019] [::1]:48430 [200]: /index.php
+[Thu Mar  7 21:21:30 2019] PHP Warning:  mysqli::__construct(): (HY000/2002): No such file or directory in /srv/http/test/Allun.ga/api/index.php on line 17
+[Thu Mar  7 21:21:30 2019] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 18
+[Thu Mar  7 21:21:30 2019] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/shrink.php on line 9
+[Thu Mar  7 21:21:30 2019] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:21:30 2019] [::1]:48432 [200]: /index.php - Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:22:44 2019] PHP Warning:  mysqli::__construct(): (HY000/2002): No such file or directory in /srv/http/test/Allun.ga/api/index.php on line 17
+[Thu Mar  7 21:22:44 2019] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 18
+[Thu Mar  7 21:22:44 2019] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 26
+[Thu Mar  7 21:22:44 2019] [::1]:49028 [200]: /index.php
+[Thu Mar  7 21:22:44 2019] PHP Warning:  mysqli::__construct(): (HY000/2002): No such file or directory in /srv/http/test/Allun.ga/api/index.php on line 17
+[Thu Mar  7 21:22:44 2019] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/index.php on line 18
+[Thu Mar  7 21:22:44 2019] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /srv/http/test/Allun.ga/api/shrink.php on line 9
+[Thu Mar  7 21:22:44 2019] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:22:44 2019] [::1]:49030 [200]: /index.php - Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:24:40 2019] [::1]:49972 [200]: /index.php
+[Thu Mar  7 21:24:40 2019] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:24:40 2019] [::1]:49974 [200]: /index.php - Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:11
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 11
+[Thu Mar  7 21:28:32 2019] [::1]:51840 [200]: /index.php
+[Thu Mar  7 21:28:32 2019] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:13
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 13
+[Thu Mar  7 21:28:32 2019] [::1]:51842 [200]: /index.php - Uncaught Error: Call to a member function bind_param() on bool in /srv/http/test/Allun.ga/api/shrink.php:13
+Stack trace:
+#0 /srv/http/test/Allun.ga/api/index.php(21): Shrink::run(Object(mysqli), 'http://www.goog...', '')
+#1 {main}
+  thrown in /srv/http/test/Allun.ga/api/shrink.php on line 13
+[Thu Mar  7 21:30:44 2019] [::1]:52914 [200]: /index.php
+[Thu Mar  7 21:30:44 2019] [::1]:52916 [200]: /index.php
+[Thu Mar  7 21:30:58 2019] [::1]:53050 [200]: /index.php
+[Thu Mar  7 21:30:58 2019] [::1]:53052 [200]: /index.php
+[Thu Mar  7 21:40:55 2019] [::1]:57884 [200]: /index.php
+[Thu Mar  7 21:40:55 2019] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /srv/http/test/Allun.ga/api/shrink.php on line 13
+[Thu Mar  7 21:40:55 2019] [::1]:57886 [200]: /index.php
+[Thu Mar  7 21:42:06 2019] [::1]:58474 [200]: /index.php
+[Thu Mar  7 21:42:06 2019] [::1]:58476 [200]: /index.php
+[Thu Mar  7 21:42:18 2019] [::1]:58582 [200]: /index.php
+[Thu Mar  7 21:42:18 2019] [::1]:58584 [200]: /index.php

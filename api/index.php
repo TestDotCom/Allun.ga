@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+
 require_once 'shrink.php';
 require_once 'expand.php';
 
@@ -13,10 +14,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
 
-//mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
 $mysqli = new mysqli($_ENV["HOST"], $_ENV["USERNAME"], $_ENV["PASSWORD"], $_ENV["DATABASE"]);
-
 $mysqli->set_charset('utf8');
 
 if ($_POST["action"] == "shrink") {

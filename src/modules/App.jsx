@@ -4,14 +4,25 @@ import {
     Switch, 
     Route 
 } from 'react-router-dom';
-import Axios from 'axios'
+import Axios from 'axios';
 
 import { Grid } from '@material-ui/core';
 
 import withRoot from './withRoot';
 import UrlCard from './UrlCard';
 
-const Main = props => {
+function App() {
+    return(
+        <BrowserRouter>
+            <Switch>
+                <Route path="/" exact component={Main} />
+                <Route component={QueryPath} />
+            </Switch>
+        </BrowserRouter>
+    );
+}
+
+const Main = _ => {
     return(
         <div>
             <Grid
@@ -41,26 +52,12 @@ const QueryPath = props => {
         }
     }).then(result => {
         console.log(result);
+        window.location.replace(result.data.url);
     }).catch(error => {
         console.log(error);
     });
 
-    return(
-        <div>
-            QUERY TODO
-        </div>
-    )
-}
-
-function App(props) {
-    return(
-        <BrowserRouter>
-            <Switch>
-                <Route path="/" exact component={Main} />
-                <Route component={QueryPath} />
-            </Switch>
-        </BrowserRouter>
-    );
+    return (<div />);
 }
 
 export default withRoot(App);

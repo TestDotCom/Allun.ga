@@ -5,19 +5,11 @@
 
             $urlh = hash("crc32", $url);
 
-            if (!($stmt = $mysqli->prepare(
+            $stmt = $mysqli->prepare(
                 "INSERT INTO url_mapping(shrink, expand) VALUES (?, ?) ON DUPLICATE KEY UPDATE id=id"
-            ))) {
-                echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
-            }
-
-            if (!$stmt->bind_param("ss", $urlh, $url)) {
-                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-            
-            if (!$stmt->execute()) {
-                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
+            );
+            $stmt->bind_param("ss", $urlh, $url);
+            $stmt->execute();
 
             $stmt->close();
             

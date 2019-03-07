@@ -1,4 +1,10 @@
-PHP 7.3.2 Development Server started at Thu Mar  7 09:51:50 2019
+[Thu Mar  7 11:24:25 2019] [::1]:47590 [200]: /index.php
+[Thu Mar  7 11:24:25 2019] [::1]:47592 [200]: /index.php
+[Thu Mar  7 11:24:38 2019] [::1]:47706 [200]: /index.php
+[Thu Mar  7 11:24:38 2019] [::1]:47708 [200]: /index.php
+[Thu Mar  7 11:33:11 2019] [::1]:51922 [200]: /index.php
+[Thu Mar  7 11:33:12 2019] [::1]:51924 [200]: /index.php
+PHP 7.3.2 Development Server started at Thu Mar  7 11:23:51 2019
 Listening on http://localhost:8000
 Document root is /srv/http/test/Allun.ga/api
 Press Ctrl-C to quit.

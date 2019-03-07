@@ -7,4 +7,5 @@ node_modules/
 
 #### PHP ####
 api/logs/php.log
+api/logs/errors.log
 vendor/

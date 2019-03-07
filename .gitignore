@@ -1,5 +1,10 @@
 .DS_STORE
 .env
 api/.env
-node_modules
+
+#### ReactJS ####
+node_modules/
+
+#### PHP ####
 api/logs/php.log
+vendor/

@@ -13,7 +13,7 @@ import {
     IconButton,
     Typography,
     TextField,
-    //Grid,
+    Grid,
     Button,
     InputAdornment
 } from '@material-ui/core';
@@ -99,15 +99,32 @@ function UrlCard({classes}) {
                         autoComplete="off"
                         onSubmit={handleSubmit}
                     >
+                        
+                    <Grid container spacing={'auto'}>
+                        <Grid item xs>
                         <TextField
                             id="outlined-name"
-                            label="Name"
+                            label="Enter your long URL"
                             className={classes.textField}
                             value={url}
                             onChange={e => setUrl(e.target.value)}
                             margin="normal"
                             variant="outlined"
                         />
+                        </Grid>
+                        <Grid item xs>
+                        <TextField
+                            id="readonlyOut"
+                            //label="Enter your long URL"
+                            className={classes.textField}
+                            value={result}
+                            //onChange={e => setUrl(e.target.value)}
+                            margin="normal"
+                            variant="outlined"
+                            disabled
+                        />
+                        </Grid>
+                        <Grid item xs={"auto"}></Grid>
                         <Button 
                             variant="contained" 
                             color="primary" 
@@ -119,6 +136,7 @@ function UrlCard({classes}) {
                                 <strong>go!</strong>
                             </Typography>
                         </Button>
+                        </Grid>
                     </form>
                 </CardContent>
                 <CardActions 
@@ -150,12 +168,15 @@ function UrlCard({classes}) {
                         </Typography>
                     </CardContent>
                     <CardContent>
+
                         <TextField
-                            label="Custom url"
-                            id="simple-start-adornment"
-                            className={clsx(classes.margin, classes.textField)}
+                            id="outlined-simple-start-adornment"
+                            className={classes.textField}
+                            variant="outlined"
+                            onChange={e => setKeyword(e.target.value)}
+                            label="Customize your url!"
                             InputProps={{
-                                startAdornment: <InputAdornment position="start">allun.ga/</InputAdornment>,
+                            startAdornment: <InputAdornment position="start">allun.ga/</InputAdornment>,
                             }}
                         />
                     </CardContent>

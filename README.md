@@ -1,13 +1,21 @@
 # Allun.ga
 
-Succint URL shortner
+Succint URL shortner, with a clever Material-UI interface.
 
-## Building and running on localhost
+## Setup
 
 First install dependencies:
 
 ```sh
 npm install
+```
+
+## Running on localhost
+
+To create a development build:
+
+```sh
+npm run build-dev
 ```
 
 To run in hot module reloading mode:
@@ -16,19 +24,12 @@ To run in hot module reloading mode:
 npm start
 ```
 
+## Running on Firebase
+
 To create a production build:
 
 ```sh
 npm run build-prod
 ```
 
-To create a development build:
-
-```sh
-npm run build-dev
-```
-
-## Running
-
-Open the file `dist/index.html` in your browser
-
+Then follow the instruction on Firebase to host this project (firebase-host branch)

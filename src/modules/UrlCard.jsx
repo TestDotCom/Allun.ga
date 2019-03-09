@@ -21,7 +21,7 @@ import {
 //import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import Firestore from './Firestore'
+import Firestore from './Firestore';
 
 const styles = theme => ({
     root: {
@@ -58,6 +58,7 @@ function UrlCard({classes}) {
     const [url, setUrl] = useState('');
     const [keyword, setKeyword] = useState('');
     const [result, setResult] = useState('');
+    const [error, setError] = useState(false);
 
     const queryKeyword = _ => {
         if (keyword != "") {
@@ -70,6 +71,7 @@ function UrlCard({classes}) {
                     setResult(keyword);
                 } else {
                     // TODO handle keyword in use
+                    setError(true);
                 }
             })
             .catch(error => console.log(error));
@@ -80,14 +82,19 @@ function UrlCard({classes}) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        queryKeyword();
+
+        const urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
         
-        Firestore.collection("urlMap").doc().set({
-            shrinked: result,
-            expanded: url
-        })
-        .then(() => console.log("Document successfully written!"))
-        .catch(error => console.error("Error writing document: ", error));
+        if (urlRegex.test(url)) {
+            queryKeyword();
+        
+            Firestore.collection("urlMap").doc().set({
+                shrinked: result,
+                expanded: url
+            })
+            .then(() => console.log("Document successfully written!"))
+            .catch(error => console.error("Error writing document: ", error));
+        }
     }
 
     return (
@@ -112,13 +119,24 @@ function UrlCard({classes}) {
                                 />
                             </Grid>
                             <Grid item xs>
-                                <TextField
-                                    id="readonlyOut"
-                                    className={classes.textField}
-                                    value={'allun.ga/' + result}
-                                    margin="normal"
-                                    variant="outlined"
-                                />
+                                { !error ? 
+                                    <TextField
+                                        id="readonlyOut"
+                                        className={classes.textField}
+                                        value={'allun.ga/' + result}
+                                        margin="normal"
+                                        variant="outlined"
+                                        /> : 
+                                    <TextField
+                                        error
+                                        id="outlined-error"
+                                        label="Error"
+                                        defaultValue="Something went wrong"
+                                        className={classes.textField}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                }
                             </Grid>
                             <Grid item xs>
                                 <Button 

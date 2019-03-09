@@ -9,18 +9,9 @@ import { Grid } from '@material-ui/core';
 
 import withRoot from './withRoot';
 import UrlCard from './UrlCard';
-import Firestore from './Firestore'
+import Firestore from './Firestore';
 
-function App() {
-    return(
-        <BrowserRouter>
-            <Switch>
-                <Route path="/" exact component={Main} />
-                <Route component={QueryPath} />
-            </Switch>
-        </BrowserRouter>
-    );
-}
+import { hot } from 'react-hot-loader/root';
 
 const Main = _ => {
     return(
@@ -47,11 +38,13 @@ const QueryPath = props => {
     
     query.get().then(querySnap => {
         if (!querySnap.empty) {
-            querySnap.forEach(doc =>
-                window.location.replace(doc.data()["expanded"])
-            )
+            querySnap.forEach(doc => {
+                //console.log(doc.data()["expanded"]);
+                window.location.replace(doc.data()["expanded"]);
+            })
         } else {
-            // TODO handle empty shrinked
+            // TODO better display error
+            return <div>Url not valid</div>
         }
     })
     .catch(error => console.log(error));
@@ -59,4 +52,15 @@ const QueryPath = props => {
     return null;
 }
 
-export default withRoot(App);
+function App() {
+    return(
+        <BrowserRouter>
+            <Switch>
+                <Route path="/" exact component={Main} />
+                <Route component={QueryPath} />
+            </Switch>
+        </BrowserRouter>
+    );
+}
+
+export default hot(withRoot(App));

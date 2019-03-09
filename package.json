@@ -1,6 +1,6 @@
 {
     "name": "Allun-ga",
-    "version": "0.1.1",
+    "version": "0.2.1",
     "description": "Succint URL shortner",
     "main": "Index.jsx",
     "keywords": [
@@ -36,12 +36,14 @@
         "react-hot-loader": "^4.7.2",
         "webpack": "^4.29.5",
         "webpack-cli": "^3.2.3",
-        "webpack-dev-server": "^3.2.0"
+        "webpack-dev-server": "^3.2.0",
+        "webpack-merge": "^4.2.1"
     },
     "browserslist": [
         ">0.2%",
         "not dead",
         "not ie <= 11",
         "not op_mini all"
-    ]
+    ],
+    "homepage": "https://allun.ga"
 }

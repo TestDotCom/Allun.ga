@@ -18,7 +18,6 @@ import {
     InputAdornment
 } from '@material-ui/core';
 
-//import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Firestore from './Firestore';
@@ -58,23 +57,25 @@ function UrlCard({classes}) {
     const [url, setUrl] = useState('');
     const [keyword, setKeyword] = useState('');
     const [result, setResult] = useState('');
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
 
     const queryKeyword = _ => {
-        if (keyword != "") {
+        if (keyword != '') {
             const query = Firestore.collection("urlMap").where(
-                "shrinked", "==", keyword
+                'shrinked', '==', keyword
             )
 
             query.get().then(querySnap => {
                 if (querySnap.empty) {
                     setResult(keyword);
                 } else {
-                    // TODO handle keyword in use
-                    setError(true);
+                    setError('Keyword already in use');
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                //console.log(error);
+                setError('Something went wrong');
+            });
         } else {
             setResult(crc32(url).toString(16));
         }
@@ -92,8 +93,13 @@ function UrlCard({classes}) {
                 shrinked: result,
                 expanded: url
             })
-            .then(() => console.log("Document successfully written!"))
-            .catch(error => console.error("Error writing document: ", error));
+            .then(() => {
+                //console.log("Document successfully written!")
+            })
+            .catch(error => {
+                //console.error("Error writing document: ", error)
+                setError('Something went wrong');
+            });
         }
     }
 
@@ -119,7 +125,7 @@ function UrlCard({classes}) {
                                 />
                             </Grid>
                             <Grid item xs>
-                                { !error ? 
+                                { error == '' ? 
                                     <TextField
                                         id="readonlyOut"
                                         className={classes.textField}

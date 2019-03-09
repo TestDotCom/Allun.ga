@@ -9,7 +9,7 @@ import { Grid } from '@material-ui/core';
 
 import withRoot from './withRoot';
 import UrlCard from './UrlCard';
-import Firestore from './Firestore';
+import QueryPath from './QueryPath';
 
 import { hot } from 'react-hot-loader/root';
 
@@ -29,27 +29,6 @@ const Main = _ => {
             </Grid>
         </div>
     );
-}
-
-const QueryPath = props => {
-    const query = Firestore.collection("urlMap").where(
-        "shrinked", "==", props.location.pathname.replace(/\//g, '')
-    )
-    
-    query.get().then(querySnap => {
-        if (!querySnap.empty) {
-            querySnap.forEach(doc => {
-                //console.log(doc.data()["expanded"]);
-                window.location.replace(doc.data()["expanded"]);
-            })
-        } else {
-            // TODO better display error
-            return <div>Url not valid</div>
-        }
-    })
-    .catch(error => console.log(error));
-
-    return null;
 }
 
 function App() {

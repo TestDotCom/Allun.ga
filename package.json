@@ -1,6 +1,6 @@
 {
     "name": "Allun-ga",
-    "version": "1.0.1",
+    "version": "0.1.1",
     "description": "Succint URL shortner",
     "main": "Index.jsx",
     "keywords": [
@@ -11,7 +11,6 @@
     "author": "TestDotCom",
     "license": "GPL-3.0-or-later",
     "scripts": {
-        "prestart": "pkill php; php -S localhost:8000 -t api/ > api/logs/php.log 2>&1 &",
         "clean": "rm dist/bundle.js",
         "build-dev": "webpack -d --mode development",
         "build-prod": "webpack -p --mode production",
@@ -20,8 +19,9 @@
     "dependencies": {
         "@material-ui/core": "^4.0.0-alpha.2",
         "@material-ui/icons": "^4.0.0-alpha.1",
-        "axios": "^0.18.0",
+        "crc": "^3.8.0",
         "dotenv-webpack": "^1.7.0",
+        "firebase": "^5.8.6",
         "react": "^16.8.4",
         "react-dom": "^16.8.4",
         "react-router-dom": "^4.3.1"

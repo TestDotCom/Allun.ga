@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Axios from 'axios';
+import crc32 from 'crc/crc32';
 
 import { 
     withStyles,
@@ -20,6 +20,8 @@ import {
 
 //import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import Firestore from './Firestore'
 
 const styles = theme => ({
     root: {
@@ -47,7 +49,7 @@ const styles = theme => ({
         marginRight: theme.spacing(1),
     },
     button: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(3),
     },
 });
 
@@ -57,22 +59,35 @@ function UrlCard({classes}) {
     const [keyword, setKeyword] = useState('');
     const [result, setResult] = useState('');
 
-    const handleSubmit = _ => {
-        Axios({
-            method: 'post',
-            url: process.env.API_URL,
-            headers: { 'content-type': 'application/json' },
-            data: { 
-                url: url,
-                keyword: keyword,
-                action: 'shrink'
-            }
-        }).then(result => {
-            console.log(result.data.url);
-            setResult(result.data.url);
-        }).catch(error => {
-            console.log(error);
-        });
+    const queryKeyword = _ => {
+        if (keyword != "") {
+            const query = Firestore.collection("urlMap").where(
+                "shrinked", "==", keyword
+            )
+
+            query.get().then(querySnap => {
+                if (querySnap.empty) {
+                    setResult(keyword);
+                } else {
+                    // TODO handle keyword in use
+                }
+            })
+            .catch(error => console.log(error));
+        } else {
+            setResult(crc32(url).toString(16));
+        }
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        queryKeyword();
+        
+        Firestore.collection("urlMap").doc().set({
+            shrinked: result,
+            expanded: url
+        })
+        .then(() => console.log("Document successfully written!"))
+        .catch(error => console.error("Error writing document: ", error));
     }
 
     return (
@@ -84,37 +99,40 @@ function UrlCard({classes}) {
                         noValidate 
                         autoComplete="off"
                     >
-                    <Grid container spacing={3}>
-                        <Grid item xs>
-                        <TextField
-                            id="outlined-name"
-                            label="Enter your long URL"
-                            className={classes.textField}
-                            value={url}
-                            onChange={e => setUrl(e.target.value)}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        </Grid>
-                        <Grid item xs>
-                        <TextField
-                            id="readonlyOut"
-                            className={classes.textField}
-                            value={'allun.ga/' + result}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        </Grid>
-                        <Button 
-                            variant="contained" 
-                            color="primary" 
-                            className={classes.button}
-                            onClick={handleSubmit}
-                        >
-                            <Typography variant="button">
-                                <strong>go!</strong>
-                            </Typography>
-                        </Button>
+                        <Grid container spacing={2}>
+                            <Grid item xs>
+                                <TextField
+                                    id="outlined-name"
+                                    label="Enter your long URL"
+                                    className={classes.textField}
+                                    value={url}
+                                    onChange={e => setUrl(e.target.value)}
+                                    margin="normal"
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs>
+                                <TextField
+                                    id="readonlyOut"
+                                    className={classes.textField}
+                                    value={'allun.ga/' + result}
+                                    margin="normal"
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    size="large"
+                                    className={classes.button}
+                                    onClick={e => handleSubmit(e)}
+                                >
+                                    <Typography variant="button">
+                                        <strong>go!</strong>
+                                    </Typography>
+                                </Button>
+                            </Grid>
                         </Grid>
                     </form>
                 </CardContent>
@@ -155,7 +173,8 @@ function UrlCard({classes}) {
                             value={keyword}
                             label="Customize your url!"
                             InputProps={{
-                                startAdornment: <InputAdornment position="start">allun.ga/</InputAdornment>,
+                                startAdornment: 
+                                    <InputAdornment position="start">allun.ga/</InputAdornment>,
                             }}
                         />
                     </CardContent>

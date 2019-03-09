@@ -1,11 +1,11 @@
+#### Project ####
 .DS_STORE
 .env
-api/.env
 
 #### ReactJS ####
 node_modules/
 
-#### PHP ####
-api/logs/php.log
-api/logs/errors.log
-vendor/
+#### Firebase ####
+.firebase
+.firebaserc
+firebase.json

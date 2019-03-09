@@ -4,12 +4,12 @@ import {
     Switch, 
     Route 
 } from 'react-router-dom';
-import Axios from 'axios';
 
 import { Grid } from '@material-ui/core';
 
 import withRoot from './withRoot';
 import UrlCard from './UrlCard';
+import Firestore from './Firestore'
 
 function App() {
     return(
@@ -41,23 +41,22 @@ const Main = _ => {
 }
 
 const QueryPath = props => {
-    Axios({
-        method: 'post',
-        url: process.env.API_URL,
-        headers: { 'content-type': 'application/json' },
-        data: { 
-            url: props.location.pathname.replace(/\//g, ''),
-            keyword: '',
-            action: 'expand'
+    const query = Firestore.collection("urlMap").where(
+        "shrinked", "==", props.location.pathname.replace(/\//g, '')
+    )
+    
+    query.get().then(querySnap => {
+        if (!querySnap.empty) {
+            querySnap.forEach(doc =>
+                window.location.replace(doc.data()["expanded"])
+            )
+        } else {
+            // TODO handle empty shrinked
         }
-    }).then(result => {
-        console.log(result);
-        window.location.replace(result.data.url);
-    }).catch(error => {
-        console.log(error);
-    });
+    })
+    .catch(error => console.log(error));
 
-    return (<div />);
+    return null;
 }
 
 export default withRoot(App);

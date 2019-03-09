@@ -59,47 +59,48 @@ function UrlCard({classes}) {
     const [result, setResult] = useState('');
     const [error, setError] = useState('');
 
-    const queryKeyword = _ => {
-        if (keyword != '') {
-            const query = Firestore.collection("urlMap").where(
-                'shrinked', '==', keyword
-            )
-
-            query.get().then(querySnap => {
-                if (querySnap.empty) {
-                    setResult(keyword);
-                } else {
-                    setError('Keyword already in use');
-                }
-            })
-            .catch(error => {
-                //console.log(error);
-                setError('Something went wrong');
-            });
-        } else {
-            setResult(crc32(url).toString(16));
-        }
-    }
-
     const handleSubmit = e => {
         e.preventDefault();
 
         const urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
-        
+        var shrinked = '';
+
         if (urlRegex.test(url)) {
-            queryKeyword();
+            if (keyword != '') {
+                const query = Firestore.collection("urlMap").where(
+                    'shrinked', '==', keyword
+                )
+    
+                query.get().then(querySnap => {
+                    if (querySnap.empty) {
+                        setResult(keyword);
+                        shrinked = keyword;
+                    } else {
+                        setError('Keyword already in use');
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    setError('Something went wrong');
+                });
+            } else {
+                shrinked = crc32(url).toString(16);
+                setResult(shrinked);
+            }
         
             Firestore.collection("urlMap").doc().set({
-                shrinked: result,
+                shrinked: shrinked,
                 expanded: url
             })
             .then(() => {
-                //console.log("Document successfully written!")
+                console.log("Document successfully written!")
             })
             .catch(error => {
-                //console.error("Error writing document: ", error)
+                console.error("Error writing document: ", error)
                 setError('Something went wrong');
             });
+        } else {
+            // TODO NOT AN URL
         }
     }
 

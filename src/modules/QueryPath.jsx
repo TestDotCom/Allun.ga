@@ -26,35 +26,38 @@ function QueryPath(props) {
     .get().then(querySnap => {
         if (!querySnap.empty) {
             querySnap.forEach(doc => {
-                //console.log(doc.data()["expanded"]);
+                console.log(doc.data()["expanded"]);
                 window.location.replace(doc.data()["expanded"]);
             })
         } else {
+            console.log('Url not found');
             setErrorMsg('Url not found');
         }
     })
     .catch(error => {
-        //console.log(error)
+        console.log(error)
         setErrorMsg('Something went wrong');
     });
 
     return (
-        <div>
-            <Paper 
-                className={props.classes.root} 
-                elevation={1}
-            >
-                <Typography 
-                    variant="h5" 
-                    component="h3"
+        errorMsg == '' ?
+            null :
+            <div>
+                <Paper 
+                    className={props.classes.root} 
+                    elevation={1}
                 >
-                    Error!
-                </Typography>
-                <Typography component="p">
-                    {errorMsg}
-                </Typography>
-            </Paper>
-        </div>
+                    <Typography 
+                        variant="h5" 
+                        component="h3"
+                    >
+                        Error!
+                    </Typography>
+                    <Typography component="p">
+                        {errorMsg}
+                    </Typography>
+                </Paper>
+            </div>
     );
 }
 

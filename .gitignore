@@ -4,6 +4,7 @@
 
 #### ReactJS ####
 node_modules/
+build/
 
 #### Firebase ####
 .firebase

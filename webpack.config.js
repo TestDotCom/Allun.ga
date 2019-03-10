@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 const config = {
     entry: './src/Index.jsx',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
     },
     module: {
@@ -30,7 +30,7 @@ const config = {
         historyApiFallback: true,
     },
     plugins: [
-        new Dotenv()
+        new Dotenv(),
     ]
 }
 

@@ -21,6 +21,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Firestore from './Firestore';
+import urlRegex from './UrlRegex';
 
 const styles = theme => ({
     root: {
@@ -61,8 +62,7 @@ function UrlCard({classes}) {
 
     const handleSubmit = e => {
         e.preventDefault();
-
-        const urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
+        
         var shrinked = '';
 
         if (urlRegex.test(url)) {
@@ -93,14 +93,14 @@ function UrlCard({classes}) {
                 expanded: url
             })
             .then(() => {
-                console.log("Document successfully written!")
+                console.log("Document successfully written!");
             })
             .catch(error => {
-                console.error("Error writing document: ", error)
+                console.error("Error writing document: ", error);
                 setError('Something went wrong');
             });
         } else {
-            // TODO NOT AN URL
+            setError('Insert a valid URL');
         }
     }
 
@@ -137,8 +137,7 @@ function UrlCard({classes}) {
                                     <TextField
                                         error
                                         id="outlined-error"
-                                        label="Error"
-                                        defaultValue="Something went wrong"
+                                        value={error}
                                         className={classes.textField}
                                         margin="normal"
                                         variant="outlined"

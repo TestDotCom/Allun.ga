@@ -11,9 +11,9 @@ import withRoot from './withRoot';
 import UrlCard from './UrlCard';
 import QueryPath from './QueryPath';
 
-import { hot } from 'react-hot-loader/root';
+import { hot } from 'react-hot-loader/root'
 
-const Main = _ => {
+const Main = () => {
     return(
         <div>
             <Grid
@@ -36,7 +36,7 @@ function App() {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Main} />
-                <Route component={QueryPath} />
+                <Route render={props => <QueryPath {...props} />} />
             </Switch>
         </BrowserRouter>
     );

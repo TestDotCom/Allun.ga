@@ -20,8 +20,8 @@ import {
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import Firestore from './Firestore';
-import urlRegex from './UrlRegex';
+import Firestore from './util/Firestore';
+import urlRegex from './util/UrlRegex';
 
 const styles = theme => ({
     root: {
@@ -80,7 +80,9 @@ function UrlCard({classes}) {
                     }
                 })
                 .catch(error => {
-                    console.log(error);
+                    if (process.env.NODE_ENV !== 'production') {
+                        console.log(error)
+                    }
                     setError('Something went wrong');
                 });
             } else {
@@ -93,10 +95,14 @@ function UrlCard({classes}) {
                 expanded: url
             })
             .then(() => {
-                console.log("Document successfully written!");
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log("doc written")
+                }
             })
             .catch(error => {
-                console.error("Error writing document: ", error);
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log(error)
+                }
                 setError('Something went wrong');
             });
         } else {
@@ -116,40 +122,47 @@ function UrlCard({classes}) {
                         <Grid container spacing={2}>
                             <Grid item xs>
                                 <TextField
+                                    className={classes.textField}
                                     id="outlined-name"
                                     label="Enter your long URL"
-                                    className={classes.textField}
-                                    value={url}
-                                    onChange={e => setUrl(e.target.value)}
+                                    aria-label="Enter your long URL"
                                     margin="normal"
                                     variant="outlined"
+                                    value={url}
+                                    onChange={e => setUrl(e.target.value)}
                                 />
                             </Grid>
                             <Grid item xs>
                                 { error == '' ? 
                                     <TextField
-                                        id="readonlyOut"
                                         className={classes.textField}
-                                        value={'allun.ga/' + result}
+                                        id="outlined-read-only-input"
+                                        label="Shortned URL"
+                                        aria-label="Shortned URL"
                                         margin="normal"
                                         variant="outlined"
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        value={'allun.ga/' + result}
                                         /> : 
                                     <TextField
                                         error
-                                        id="outlined-error"
-                                        value={error}
                                         className={classes.textField}
+                                        id="outlined-error"
+                                        aria-label="There was an error"
                                         margin="normal"
                                         variant="outlined"
+                                        value={error}
                                     />
                                 }
                             </Grid>
                             <Grid item xs>
                                 <Button 
-                                    variant="contained" 
-                                    color="primary" 
-                                    size="large"
                                     className={classes.button}
+                                    variant="contained" 
+                                    color="secondary" 
+                                    size="large"
                                     onClick={e => handleSubmit(e)}
                                 >
                                     <Typography variant="button">
@@ -164,16 +177,13 @@ function UrlCard({classes}) {
                     className={classes.actions} 
                     disableActionSpacing
                 >
-                    {/*<IconButton aria-label="Share">
-                        <ShareIcon />
-                    </IconButton>*/}
                     <IconButton
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,
                         })}
-                        onClick={() => setExpanded(!expanded)}
-                        aria-expanded={expanded}
                         aria-label="Show more"
+                        aria-expanded={expanded}
+                        onClick={() => setExpanded(!expanded)}
                     >
                         <ExpandMoreIcon />
                     </IconButton>
@@ -190,16 +200,19 @@ function UrlCard({classes}) {
                     </CardContent>
                     <CardContent>
                         <TextField
-                            id="outlined-simple-start-adornment"
                             className={classes.textField}
+                            id="outlined-simple-start-adornment"
+                            label="Customize your URL!"
+                            aria-label="Customize your URL"
                             variant="outlined"
-                            onChange={e => setKeyword(e.target.value)}
-                            value={keyword}
-                            label="Customize your url!"
                             InputProps={{
                                 startAdornment: 
-                                    <InputAdornment position="start">allun.ga/</InputAdornment>,
+                                    <InputAdornment position="start">
+                                        allun.ga/
+                                    </InputAdornment>,
                             }}
+                            value={keyword}
+                            onChange={e => setKeyword(e.target.value)}  
                         />
                     </CardContent>
                 </Collapse>

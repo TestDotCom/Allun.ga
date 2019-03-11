@@ -7,7 +7,7 @@ import {
     Typography
 } from '@material-ui/core';
 
-import Firestore from './Firestore';
+import Firestore from './util/Firestore';
 
 const styles = theme => ({
     root: {
@@ -26,16 +26,19 @@ function QueryPath(props) {
     .get().then(querySnap => {
         if (!querySnap.empty) {
             querySnap.forEach(doc => {
-                console.log(doc.data()["expanded"]);
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log(doc.data()["expanded"]);
+                }
                 window.location.replace(doc.data()["expanded"]);
             })
         } else {
-            console.log('Url not found');
             setErrorMsg('Url not found');
         }
     })
     .catch(error => {
-        console.log(error)
+        if (process.env.NODE_ENV !== 'production') {
+            console.log(error)
+        }
         setErrorMsg('Something went wrong');
     });
 
@@ -63,6 +66,7 @@ function QueryPath(props) {
 
 QueryPath.propTypes = {
     classes: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
 };
   
 export default withStyles(styles)(QueryPath);

@@ -52,15 +52,18 @@ if(TARGET === 'start') {
 if(TARGET === 'build') {
     module.exports = merge(common, {
         mode: 'production',
-        devtool: 'source-map',
+        //devtool: 'source-map',
         optimization: {
             minimizer: [
                 new TerserPlugin({
                     cache: true,
                     parallel: true,
-                    sourceMap: true,
+                    //sourceMap: true,
                 }),
             ],
-        }
+            //splitChunks: {
+                //chunks: 'all'
+            //},
+        },
     });
 }

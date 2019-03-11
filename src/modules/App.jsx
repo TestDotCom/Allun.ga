@@ -5,31 +5,11 @@ import {
     Route 
 } from 'react-router-dom';
 
-import { Grid } from '@material-ui/core';
-
 import withRoot from './withRoot';
-import UrlCard from './UrlCard';
+import Main from './Main';
 import QueryPath from './QueryPath';
 
-import { hot } from 'react-hot-loader/root'
-
-const Main = () => {
-    return(
-        <div>
-            <Grid
-                container
-                direction="column"
-                justify="flex-start"
-                alignItems="center"
-                spacing={2}
-            >
-                <Grid item>
-                    <UrlCard />
-                </Grid>
-            </Grid>
-        </div>
-    );
-}
+import { hot } from 'react-hot-loader/root';
 
 function App() {
     return(

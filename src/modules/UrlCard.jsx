@@ -13,7 +13,6 @@ import {
     IconButton,
     Typography,
     TextField,
-    Grid,
     Button,
     InputAdornment
 } from '@material-ui/core';
@@ -28,8 +27,12 @@ const styles = theme => ({
         flexGrow: 1,
     },
     card: {
-        width: 800,
-        maxWidth: 1000,
+        minWidth: 200,
+        maxHeight: 600,
+        //width: 800,
+        //maxWidth: 1000,
+        //padding: theme.spacing(2),
+        textAlign: 'left',
     },
     actions: {
         display: 'flex',
@@ -49,7 +52,49 @@ const styles = theme => ({
         marginRight: theme.spacing(1),
     },
     button: {
-        margin: theme.spacing(3),
+        margin: theme.spacing(2),
+    },
+    itemContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+        }
+    },
+    baseline: {
+        alignSelf: 'baseline',
+        marginLeft: theme.spacing(2),
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: 'center',
+            alignItems: 'center',
+            width: '100%',
+            marginTop: theme.spacing(2),
+            marginBottom: theme.spacing(2),
+            marginLeft: 0
+        }
+    },
+    inline: {
+        display: 'inline-block',
+        marginLeft: theme.spacing(2),
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: 0
+        }
+    },
+    inlineLeft: {
+        width: '30%',
+        textAlign: 'left',
+        marginLeft: 20,
+        alignSelf: 'flex-start',
+        [theme.breakpoints.down('sm')]: {
+          width: '100%',
+          margin: 0,
+          textAlign: 'center'
+        }
     },
 });
 
@@ -115,12 +160,9 @@ function UrlCard({classes}) {
             <Card className={classes.card}>
                 <CardHeader title="allun.ga" />
                 <CardContent>
-                    <form 
-                        noValidate 
-                        autoComplete="off"
-                    >
-                        <Grid container spacing={2}>
-                            <Grid item xs>
+                    <div className={classes.itemContainer}>
+                        <div className={classes.baseline}>
+                            <div className={classes.inline}>
                                 <TextField
                                     className={classes.textField}
                                     id="outlined-name"
@@ -131,8 +173,6 @@ function UrlCard({classes}) {
                                     value={url}
                                     onChange={e => setUrl(e.target.value)}
                                 />
-                            </Grid>
-                            <Grid item xs>
                                 { error == '' ? 
                                     <TextField
                                         className={classes.textField}
@@ -145,33 +185,32 @@ function UrlCard({classes}) {
                                             readOnly: true,
                                         }}
                                         value={'allun.ga/' + result}
-                                        /> : 
+                                    /> : 
                                     <TextField
                                         error
                                         className={classes.textField}
                                         id="outlined-error"
                                         aria-label="There was an error"
-                                        margin="normal"
-                                        variant="outlined"
+                                        margin="normal"                                        variant="outlined"
                                         value={error}
                                     />
                                 }
-                            </Grid>
-                            <Grid item xs>
+                            </div>
+                            <div className={classes.inlineRight}>
                                 <Button 
-                                    className={classes.button}
-                                    variant="contained" 
-                                    color="secondary" 
-                                    size="large"
-                                    onClick={e => handleSubmit(e)}
+                                className={classes.button}
+                                variant="contained" 
+                                color="secondary" 
+                                size="large"
+                                onClick={e => handleSubmit(e)}
                                 >
                                     <Typography variant="button">
                                         <strong>go!</strong>
                                     </Typography>
                                 </Button>
-                            </Grid>
-                        </Grid>
-                    </form>
+                            </div>
+                        </div>
+                    </div>
                 </CardContent>
                 <CardActions 
                     className={classes.actions} 
@@ -199,21 +238,27 @@ function UrlCard({classes}) {
                         </Typography>
                     </CardContent>
                     <CardContent>
-                        <TextField
-                            className={classes.textField}
-                            id="outlined-simple-start-adornment"
-                            label="Customize your URL!"
-                            aria-label="Customize your URL"
-                            variant="outlined"
-                            InputProps={{
-                                startAdornment: 
-                                    <InputAdornment position="start">
-                                        allun.ga/
-                                    </InputAdornment>,
-                            }}
-                            value={keyword}
-                            onChange={e => setKeyword(e.target.value)}  
-                        />
+                        <div className={classes.itemContainer}>
+                            <div className={classes.baseline}>
+                                <div className={classes.inline}>
+                                    <TextField
+                                        className={classes.textField}
+                                        id="outlined-simple-start-adornment"
+                                        label="Customize your URL!"
+                                        aria-label="Customize your URL"
+                                        variant="outlined"
+                                        InputProps={{
+                                            startAdornment: 
+                                                <InputAdornment position="start">
+                                                    allun.ga/
+                                                </InputAdornment>,
+                                        }}
+                                        value={keyword}
+                                        onChange={e => setKeyword(e.target.value)}  
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </CardContent>
                 </Collapse>
             </Card>

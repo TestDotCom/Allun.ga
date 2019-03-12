@@ -1,7 +1,8 @@
 const path = require('path');
-var merge = require('webpack-merge');
+const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+//const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 var TARGET = process.env.npm_lifecycle_event;
 
@@ -15,7 +16,19 @@ var common = {
         rules: [{
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            use: 'babel-loader'
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        '@babel/preset-env',
+                        '@babel/preset-react',
+                    ],
+                    plugins: [
+                        'react-hot-loader/babel',
+                        '@babel/plugin-transform-arrow-functions'
+                    ]
+                }
+              }
         }],
     },
     resolve: {
@@ -27,13 +40,12 @@ var common = {
             'react-dom': '@hot-loader/react-dom'
         }
     },
-    devServer: {
-        contentBase: './build',
-        // required for routing
-        historyApiFallback: true,
-    },
     plugins: [
         new Dotenv(),
+        //new HtmlWebPackPlugin({
+            //template: "./src/index.html",
+            //filename: "index.html"
+        //})
     ],
 };
 

@@ -15,7 +15,7 @@ function App() {
     return(
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={Main} />
+                <Route path="/" exact render={props => <Main {...props} />} />
                 <Route render={props => <QueryPath {...props} />} />
             </Switch>
         </BrowserRouter>

@@ -1,20 +1,40 @@
 import React from 'react';
 
-import { Grid } from '@material-ui/core';
+import { 
+    Grid,
+    withStyles
+} from '@material-ui/core';
 
 import UrlCard from './UrlCard';
 
-const Main = () => {
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+        overflow: 'hidden',
+        //backgroundColor: theme.palette.grey['A500'],
+        //background: `url(${backgroundShape}) no-repeat`,
+        //backgroundSize: 'cover',
+        //backgroundPosition: '0 400px',
+        marginTop: 20,
+        //padding: 20,
+        //paddingBottom: 200
+    },
+    grid: {
+        //width: 1000
+    }
+})
+
+const Main = props => {
     return(
-        <div>
+        <div className={props.classes.root}>
             <Grid
                 container
-                direction="column"
-                justify="flex-start"
-                alignItems="center"
-                spacing={2}
+                className={props.classes.grid}
+                spacing={10} 
+                alignItems="center" 
+                justify="center" 
             >
-                <Grid item>
+                <Grid item xs={8}> 
                     <UrlCard />
                 </Grid>
             </Grid>
@@ -22,4 +42,4 @@ const Main = () => {
     );
 }
 
-export default Main;
+export default withStyles(styles)(Main);

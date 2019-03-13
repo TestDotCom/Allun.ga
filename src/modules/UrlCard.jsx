@@ -107,41 +107,26 @@ function UrlCard({classes}) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        setError('');
+
+        if (!urlRegex.test(url)) {
+            setError('Insert a valid URL');
+            return;
+        }
         
         var shrinked = '';
 
-        if (urlRegex.test(url)) {
-            if (keyword != '') {
-                const query = Firestore.collection("urlMap").where(
-                    'shrinked', '==', keyword
-                )
+        if (keyword != '') {
+            const query = Firestore.collection("urlMap").where(
+                'shrinked', '==', keyword
+            )
     
-                query.get().then(querySnap => {
-                    if (querySnap.empty) {
-                        setResult(keyword);
-                        shrinked = keyword;
-                    } else {
-                        setError('Keyword already in use');
-                    }
-                })
-                .catch(error => {
-                    if (process.env.NODE_ENV !== 'production') {
-                        console.log(error)
-                    }
-                    setError('Something went wrong');
-                });
-            } else {
-                shrinked = crc32(url).toString(16);
-                setResult(shrinked);
-            }
-        
-            Firestore.collection("urlMap").doc().set({
-                shrinked: shrinked,
-                expanded: url
-            })
-            .then(() => {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.log("doc written")
+            query.get().then(querySnap => {
+                if (querySnap.empty) {
+                    setResult(keyword);
+                    shrinked = keyword;
+                } else {
+                    setError('Keyword already in use');
                 }
             })
             .catch(error => {
@@ -151,8 +136,25 @@ function UrlCard({classes}) {
                 setError('Something went wrong');
             });
         } else {
-            setError('Insert a valid URL');
+            shrinked = crc32(url).toString(16);
+            setResult(shrinked);
         }
+        
+        Firestore.collection("urlMap").doc().set({
+            shrinked: shrinked,
+            expanded: url
+        })
+        .then(() => {
+            if (process.env.NODE_ENV !== 'production') {
+                console.log("doc written")
+            }
+        })
+        .catch(error => {
+            if (process.env.NODE_ENV !== 'production') {
+                console.log(error)
+            }
+            setError('Something went wrong');
+        });
     }
 
     return (
@@ -170,6 +172,7 @@ function UrlCard({classes}) {
                                     aria-label="Enter your long URL"
                                     margin="normal"
                                     variant="outlined"
+                                    autoFocus={true}
                                     value={url}
                                     onChange={e => setUrl(e.target.value)}
                                 />
@@ -190,9 +193,12 @@ function UrlCard({classes}) {
                                         error
                                         className={classes.textField}
                                         id="outlined-error"
-                                        aria-label="There was an error"
-                                        margin="normal"                                        variant="outlined"
+                                        label="Error"
+                                        aria-label="Error"
+                                        margin="normal"
+                                        variant="outlined"
                                         value={error}
+                                        error
                                     />
                                 }
                             </div>
@@ -243,10 +249,11 @@ function UrlCard({classes}) {
                                 <div className={classes.inline}>
                                     <TextField
                                         className={classes.textField}
-                                        id="outlined-simple-start-adornment"
+                                        id="simple-start-adornment"
                                         label="Customize your URL!"
                                         aria-label="Customize your URL"
                                         variant="outlined"
+                                        autoComplete="off"
                                         InputProps={{
                                             startAdornment: 
                                                 <InputAdornment position="start">

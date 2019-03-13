@@ -2,7 +2,8 @@ const path = require('path');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-//const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var TARGET = process.env.npm_lifecycle_event;
 
@@ -25,7 +26,8 @@ var common = {
                     ],
                     plugins: [
                         'react-hot-loader/babel',
-                        '@babel/plugin-transform-arrow-functions'
+                        '@babel/plugin-transform-arrow-functions',
+                        'syntax-dynamic-import',
                     ]
                 }
               }
@@ -42,10 +44,10 @@ var common = {
     },
     plugins: [
         new Dotenv(),
-        //new HtmlWebPackPlugin({
-            //template: "./src/index.html",
-            //filename: "index.html"
-        //})
+        new HtmlWebPackPlugin({
+            template: './src/index.html',
+        }),
+        new CleanWebpackPlugin(),
     ],
 };
 

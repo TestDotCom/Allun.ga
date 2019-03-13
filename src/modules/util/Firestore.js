@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import app from 'firebase/app';
 import 'firebase/firestore'
 
 const config = {
@@ -9,6 +9,7 @@ const config = {
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId
 };
-firebase.initializeApp(config);
 
-export default firebase.firestore();
+app.initializeApp(config);
+
+export default app.firestore();

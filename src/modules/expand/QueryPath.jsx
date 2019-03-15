@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core';
@@ -42,9 +42,11 @@ function QueryPath(props) {
     return (
         errorMsg == '' ?
             null :
-            <div>
-                <NotFound msg={errorMsg} />
-            </div>
+            <Fragment>
+                <NotFound 
+                    // msg={errorMsg} 
+                />
+            </Fragment>
     );
 }
 

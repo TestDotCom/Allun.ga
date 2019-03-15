@@ -180,8 +180,8 @@ function UrlCard({classes}) {
                                     <TextField
                                         className={classes.textField}
                                         id="outlined-read-only-input"
-                                        label="Shortned URL"
-                                        aria-label="Shortned URL"
+                                        //label="Shortned URL"
+                                        //aria-label="Shortned URL"
                                         margin="normal"
                                         variant="outlined"
                                         InputProps={{
@@ -193,12 +193,11 @@ function UrlCard({classes}) {
                                         error
                                         className={classes.textField}
                                         id="outlined-error"
-                                        label="Error"
-                                        aria-label="Error"
+                                        //label="Error"
+                                        //aria-label="Error"
                                         margin="normal"
                                         variant="outlined"
                                         value={error}
-                                        error
                                     />
                                 }
                             </div>
@@ -254,11 +253,10 @@ function UrlCard({classes}) {
                                         aria-label="Customize your URL"
                                         variant="outlined"
                                         autoComplete="off"
-                                        InputProps={{
-                                            startAdornment: 
-                                                <InputAdornment position="start">
-                                                    allun.ga/
-                                                </InputAdornment>,
+                                        InputProps={{ startAdornment: 
+                                            <InputAdornment position="start">
+                                                allun.ga/
+                                            </InputAdornment>,
                                         }}
                                         value={keyword}
                                         onChange={e => setKeyword(e.target.value)}  

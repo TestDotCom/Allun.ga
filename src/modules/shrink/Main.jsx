@@ -5,23 +5,17 @@ import {
     withStyles
 } from '@material-ui/core';
 
+import TopBar from './TopBar';
 import UrlCard from './UrlCard';
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         overflow: 'hidden',
-        //backgroundColor: theme.palette.grey['A500'],
-        //background: `url(${backgroundShape}) no-repeat`,
-        //backgroundSize: 'cover',
-        //backgroundPosition: '0 400px',
         marginTop: 20,
         //padding: 20,
         //paddingBottom: 200
     },
-    grid: {
-        //width: 1000
-    }
 })
 
 const Main = props => {
@@ -29,11 +23,13 @@ const Main = props => {
         <div className={props.classes.root}>
             <Grid
                 container
-                className={props.classes.grid}
-                spacing={10} 
+                spacing={2} 
                 alignItems="center" 
                 justify="center" 
             >
+                <Grid item xs={8}>
+                    <TopBar />
+                </Grid>
                 <Grid item xs={8}> 
                     <UrlCard />
                 </Grid>

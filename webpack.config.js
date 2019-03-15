@@ -14,24 +14,33 @@ var common = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [{
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        '@babel/preset-env',
-                        '@babel/preset-react',
-                    ],
-                    plugins: [
-                        'react-hot-loader/babel',
-                        '@babel/plugin-transform-arrow-functions',
-                        'syntax-dynamic-import',
-                    ]
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-react',
+                        ],
+                        plugins: [
+                            'react-hot-loader/babel',
+                            '@babel/plugin-transform-arrow-functions',
+                            'syntax-dynamic-import',
+                        ]
+                    }
                 }
-              }
-        }],
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {},
+                },
+              },
+        ],
     },
     resolve: {
         extensions: [

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { 
-    withStyles,
-    Paper,
-    Typography
-} from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 
-import Firestore from './util/Firestore';
+import NotFound from './NotFound';
+import Firestore from '../util/Firestore';
 
 const styles = theme => ({
     root: {
@@ -32,7 +29,7 @@ function QueryPath(props) {
                 window.location.replace(doc.data()["expanded"]);
             })
         } else {
-            setErrorMsg('Url not found');
+            setErrorMsg('404 URL not found');
         }
     })
     .catch(error => {
@@ -46,20 +43,7 @@ function QueryPath(props) {
         errorMsg == '' ?
             null :
             <div>
-                <Paper 
-                    className={props.classes.root} 
-                    elevation={1}
-                >
-                    <Typography 
-                        variant="h5" 
-                        component="h3"
-                    >
-                        Error!
-                    </Typography>
-                    <Typography component="p">
-                        {errorMsg}
-                    </Typography>
-                </Paper>
+                <NotFound msg={errorMsg} />
             </div>
     );
 }

@@ -6,10 +6,9 @@ import {
 } from 'react-router-dom';
 
 import withRoot from './withRoot';
-//import Main from './Main';
-//import QueryPath from './QueryPath';
-const Main = lazy(() => import('./Main'));
-const QueryPath = lazy(() => import('./QueryPath'));
+
+const Main = lazy(() => import('./shrink/Main'));
+const QueryPath = lazy(() => import('./expand/QueryPath'));
 
 
 import { hot } from 'react-hot-loader/root';

@@ -19,8 +19,8 @@ import {
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import Firestore from './util/Firestore';
-import urlRegex from './util/UrlRegex';
+import Firestore from '../util/Firestore';
+import urlRegex from '../util/UrlRegex';
 
 const styles = theme => ({
     root: {

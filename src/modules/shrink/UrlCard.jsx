@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import crc32 from 'crc/crc32';
@@ -107,14 +107,14 @@ function UrlCard({classes}) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setError('');
 
         if (!urlRegex.test(url)) {
             setError('Insert a valid URL');
             return;
         }
-        
-        var shrinked = '';
+
+        // flush past errors
+        setError('');
 
         if (keyword != '') {
             const query = Firestore.collection("urlMap").where(
@@ -124,38 +124,40 @@ function UrlCard({classes}) {
             query.get().then(querySnap => {
                 if (querySnap.empty) {
                     setResult(keyword);
-                    shrinked = keyword;
                 } else {
                     setError('Keyword already in use');
                 }
             })
-            .catch(error => {
+            .catch(e => {
                 if (process.env.NODE_ENV !== 'production') {
-                    console.log(error)
+                    console.log(e)
                 }
                 setError('Something went wrong');
             });
         } else {
-            shrinked = crc32(url).toString(16);
-            setResult(shrinked);
+            setResult(crc32(url).toString(16));
         }
-        
-        Firestore.collection("urlMap").doc().set({
-            shrinked: shrinked,
-            expanded: url
-        })
-        .then(() => {
-            if (process.env.NODE_ENV !== 'production') {
-                console.log("doc written")
-            }
-        })
-        .catch(error => {
-            if (process.env.NODE_ENV !== 'production') {
-                console.log(error)
-            }
-            setError('Something went wrong');
-        });
     }
+
+    useEffect(() => {
+        return () => {
+            Firestore.collection("urlMap").doc().set({
+                expanded: url,
+                shrinked: result
+            })
+            .then(() => {
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log("doc written")
+                }
+            })
+            .catch(e => {
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log(e)
+                }
+                setError('Something went wrong');
+            });
+        }
+    }, [result])
 
     return (
         <div className={classes.root}>

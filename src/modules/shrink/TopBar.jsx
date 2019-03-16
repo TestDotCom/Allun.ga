@@ -8,7 +8,7 @@ import {
     Button
 } from '@material-ui/core';
 
-import ButtonModal from './ButtonModal';
+import AboutDialog from './AboutDialog';
 
 const styles = {
   root: {
@@ -28,7 +28,7 @@ function TopBar({classes}) {
     >
         <Toolbar>
             <div>
-                <ButtonModal />
+                <AboutDialog />
             </div>
             <div>
                 <Button 

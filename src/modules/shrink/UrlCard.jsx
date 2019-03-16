@@ -141,7 +141,7 @@ function UrlCard({classes}) {
 
     useEffect(() => {
         if (result != '') {
-            Firestore.collection("urlMap").doc().set({
+            Firestore.collection("urlMap").doc(result).set({
                 expanded: url,
                 shrinked: result
             })
@@ -186,9 +186,7 @@ function UrlCard({classes}) {
                                         //aria-label="Shortned URL"
                                         margin="normal"
                                         variant="outlined"
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        InputProps={{ readOnly: true }}
                                         value={'allun.ga/' + result}
                                     /> : 
                                     <TextField
@@ -203,7 +201,7 @@ function UrlCard({classes}) {
                                     />
                                 }
                             </div>
-                            <div className={classes.inlineRight}>
+                            <div className={classes.inline}>
                                 <Button 
                                 className={classes.button}
                                 variant="contained" 

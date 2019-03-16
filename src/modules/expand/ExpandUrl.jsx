@@ -17,35 +17,35 @@ const styles = theme => ({
 function QueryPath(props) {
     const [errorMsg, setErrorMsg] = useState('');
 
-    Firestore.collection("urlMap").where(
-        "shrinked", "==", props.location.pathname.replace(/\//g, '')
-    )
-    .get().then(querySnap => {
-        if (!querySnap.empty) {
-            querySnap.forEach(doc => {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.log(doc.data()["expanded"]);
-                }
-                window.location.replace(doc.data()["expanded"]);
-            })
-        } else {
-            setErrorMsg('404 URL not found');
-        }
-    })
-    .catch(error => {
-        if (process.env.NODE_ENV !== 'production') {
-            console.log(error)
-        }
-        setErrorMsg('Something went wrong');
-    });
+    const shrinked = props.location.pathname.replace(/\//g, '');
+    const docRef = Firestore.collection('urlMap').doc(shrinked);
 
+    docRef.get()
+        .then(doc => {
+            if (doc.exists) {
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log(doc.data());
+                }
+                window.location.replace(doc.data()['expanded']);
+            } else {
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log('no document');
+                }
+                setErrorMsg('404 URL not found');
+            }
+        })
+        .catch(e => {
+            if (process.env.NODE_ENV !== 'production') {
+                console.log(error)
+            }
+            setErrorMsg('Something went wrong');
+        });
+        
     return (
         errorMsg == '' ?
             null :
             <Fragment>
-                <NotFound 
-                    // msg={errorMsg} 
-                />
+                <NotFound />
             </Fragment>
     );
 }

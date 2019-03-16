@@ -31,10 +31,7 @@ const styles = theme => ({
     },
 });
 
-function NotFound(props) {
-    const classes = props.classes;
-    //const msg = props.msg;
-
+function NotFound({classes}) {
     return(
         <div className={classes.root}>
             <Grid container justify="center"> 
@@ -73,7 +70,6 @@ function NotFound(props) {
 }
 
 NotFound.propTypes = {
-    //msg: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
 };
 

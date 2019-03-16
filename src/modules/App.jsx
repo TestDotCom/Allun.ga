@@ -4,22 +4,22 @@ import {
     Switch, 
     Route 
 } from 'react-router-dom';
+import { hot } from 'react-hot-loader/root';
 
 import withRoot from './withRoot';
 
 const Main = lazy(() => import('./shrink/Main'));
-const QueryPath = lazy(() => import('./expand/QueryPath'));
-
-
-import { hot } from 'react-hot-loader/root';
+const ExpandUrl = lazy(() => import('./expand/ExpandUrl'));
 
 function App() {
     return(
         <BrowserRouter>
+            {/* better loading suspension */}
             <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                     <Route path="/" exact render={props => <Main {...props} />} />
-                    <Route render={props => <QueryPath {...props} />} />
+                    {/* redirect other paths here */}
+                    <Route render={props => <ExpandUrl {...props} />} />
                 </Switch>
             </Suspense>
         </BrowserRouter>

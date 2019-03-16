@@ -175,6 +175,7 @@ function UrlCard({classes}) {
                                     margin="normal"
                                     variant="outlined"
                                     autoFocus={true}
+                                    autoComplete="off"
                                     value={url}
                                     onChange={e => setUrl(e.target.value)}
                                 />
@@ -201,7 +202,7 @@ function UrlCard({classes}) {
                                     />
                                 }
                             </div>
-                            <div className={classes.inline}>
+                            <div className={classes.inlineLeft}>
                                 <Button 
                                 className={classes.button}
                                 variant="contained" 

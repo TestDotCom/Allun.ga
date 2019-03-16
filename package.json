@@ -1,6 +1,6 @@
 {
     "name": "Allun-ga",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Succint URL shortner",
     "main": "Index.jsx",
     "keywords": [

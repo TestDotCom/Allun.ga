@@ -140,7 +140,7 @@ function UrlCard({classes}) {
     }
 
     useEffect(() => {
-        return () => {
+        if (result != '') {
             Firestore.collection("urlMap").doc().set({
                 expanded: url,
                 shrinked: result

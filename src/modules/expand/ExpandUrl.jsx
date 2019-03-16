@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core';
 
-import NotFound from './NotFound';
+import ErrorCard from './ErrorCard';
 import Firestore from '../util/Firestore';
 
 const styles = theme => ({
@@ -31,21 +31,21 @@ function QueryPath(props) {
                 if (process.env.NODE_ENV !== 'production') {
                     console.log('no document');
                 }
-                setErrorMsg('404 URL not found');
+                setErrorMsg(404);
             }
         })
         .catch(e => {
             if (process.env.NODE_ENV !== 'production') {
                 console.log(error)
             }
-            setErrorMsg('Something went wrong');
+            setErrorMsg(503);
         });
         
     return (
         errorMsg == '' ?
             null :
             <Fragment>
-                <NotFound />
+                <ErrorCard errorMsg={errorMsg} />
             </Fragment>
     );
 }

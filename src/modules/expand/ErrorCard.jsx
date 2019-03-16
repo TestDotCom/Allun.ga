@@ -10,7 +10,8 @@ import {
     Link
 } from '@material-ui/core';
 
-import notFoundImg from '../../img/notFound.png';
+import error404 from '../../img/error_404.png';
+import error503 from '../../img/error_503.png';
 
 const styles = theme => ({
     root: {
@@ -18,7 +19,7 @@ const styles = theme => ({
         overflow: 'hidden',
         //marginTop: 20,
         padding: 20,
-        paddingBottom: "100%"
+        //paddingBottom: "100%"
     },
     card: {
         padding: theme.spacing(2),
@@ -31,7 +32,7 @@ const styles = theme => ({
     },
 });
 
-function NotFound({classes}) {
+function ErrorCard({classes, errorMsg}) {
     return(
         <div className={classes.root}>
             <Grid container justify="center"> 
@@ -43,11 +44,18 @@ function NotFound({classes}) {
                 >
                     <Grid item xs={12}>
                         <Card className={classes.paper}>
-                            <CardMedia
-                                className={classes.media}
-                                image={notFoundImg}
-                                title="Bob Ross"
-                            />
+                            { errorMsg == 404 ?
+                                <CardMedia
+                                    className={classes.media}
+                                    image={error404}
+                                    title="Bob Ross"
+                                /> :
+                                <CardMedia
+                                    className={classes.media}
+                                    image={error503}
+                                    title="Bob Ross"
+                                /> 
+                            }
                             <CardContent align="center">
                                 <Link
                                     className={classes.link}
@@ -69,8 +77,9 @@ function NotFound({classes}) {
     );
 }
 
-NotFound.propTypes = {
+ErrorCard.propTypes = {
     classes: PropTypes.object.isRequired,
+    errorMsg: PropTypes.number.isRequired,
 };
 
-export default withStyles(styles)(NotFound);
+export default withStyles(styles)(ErrorCard);

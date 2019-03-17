@@ -1,4 +1,4 @@
-![logo](logo_xs.png)
+![logo](logo_xs.png) ![qrcode](qrcode_xs.png)
 
 # Allun.ga
 

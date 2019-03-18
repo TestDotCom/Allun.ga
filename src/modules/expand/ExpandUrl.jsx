@@ -1,23 +1,13 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core';
-
 import ErrorCard from './ErrorCard';
 import Firestore from '../util/Firestore';
 
-const styles = theme => ({
-    root: {
-        paddingLeft: theme.spacing(4),
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
-    },
-});
-
-function QueryPath(props) {
+function ExpandUrl({location}) {
     const [errorMsg, setErrorMsg] = useState('');
 
-    const shrinked = props.location.pathname.replace(/\//g, '');
+    const shrinked = location.pathname.replace(/\//g, '');
     const docRef = Firestore.collection('urlMap').doc(shrinked);
 
     docRef.get()
@@ -50,9 +40,8 @@ function QueryPath(props) {
     );
 }
 
-QueryPath.propTypes = {
-    classes: PropTypes.object.isRequired,
+ExpandUrl.propTypes = {
     location: PropTypes.object.isRequired,
 };
   
-export default withStyles(styles)(QueryPath);
+export default ExpandUrl;

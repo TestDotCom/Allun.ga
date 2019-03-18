@@ -14,7 +14,6 @@ const ExpandUrl = lazy(() => import('./expand/ExpandUrl'));
 function App() {
     return(
         <BrowserRouter>
-            {/* better loading suspension */}
             <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                     <Route path="/" exact render={props => <Main {...props} />} />

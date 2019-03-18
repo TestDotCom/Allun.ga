@@ -13,8 +13,7 @@ const styles = theme => ({
         flexGrow: 1,
         overflow: 'hidden',
         marginTop: 20,
-        //padding: 20,
-        //paddingBottom: 200
+        marginBottom: 20,
     },
 })
 

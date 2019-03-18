@@ -12,18 +12,20 @@ import {
 function AboutDialog() {
     const [open, setOpen] = useState(false);
     
+    const handleClick = () => setOpen(!open);
+    
     return (
         <Fragment>
             <Button 
                 color='secondary'
-                onClick={() => setOpen(true)}>
+                onClick={handleClick}>
                 about
             </Button>
             <Dialog
                 aria-labelledby="scroll-dialog-title"
                 scroll="paper"
                 open={open}
-                onClose={() => setOpen(false)}
+                onClose={handleClick}
             >
                 <DialogTitle id="scroll-dialog-title">
                     About us

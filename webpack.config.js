@@ -55,6 +55,7 @@ var common = {
         new Dotenv(),
         new HtmlWebPackPlugin({
             template: './src/index.html',
+            favicon: 'src/img/favicon.ico',
         }),
         new CleanWebpackPlugin(),
     ],

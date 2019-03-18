@@ -19,9 +19,9 @@ const theme = createMuiTheme({
             dark: cyan[700],
         },
         secondary: {
-            light: pink[400],
-            main: pink[600],
-            dark: pink[800],
+            light: pink['A100'],
+            main: pink['A200'],
+            dark: pink[600],
         },
     },
 });

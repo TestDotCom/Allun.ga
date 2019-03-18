@@ -14,7 +14,7 @@ const styles = {
   root: {
     flexGrow: 1,
     rounded: true,
-    minWidth: 210,
+    //minWidth: 210,
   },
 
 };
@@ -31,22 +31,22 @@ function TopBar({classes}) {
                 <AboutDialog />
             </div>
             <div>
-                <Button 
-                    className={classes.button}
+                <Button
                     href="https://github.com/TestDotCom/Allun.ga" 
                     target="_blank" 
+                    rel="noopener"
                     color="primary" 
                 >
-                    <strong>Github</strong>
+                    <strong>github</strong>
                 </Button>
             </div>
             <div>
-                <Button 
-                    className={classes.button}
+                <Button
                     href="https://www.youtube.com/embed/qK9OLRbAW30" 
+                    rel="noopener"
                     target="_blank" 
                 >
-                    <strong>Some Good Vibes</strong>
+                    <strong>good vibes</strong>
                 </Button>
             </div>
         </Toolbar>

@@ -27,11 +27,9 @@ const styles = theme => ({
         flexGrow: 1,
     },
     card: {
-        minWidth: 200,
-        maxHeight: 600,
-        //width: 800,
-        //maxWidth: 1000,
-        //padding: theme.spacing(2),
+        //minWidth: 200,
+        //maxHeight: 600,
+        padding: theme.spacing(1),
         textAlign: 'left',
     },
     actions: {
@@ -41,7 +39,7 @@ const styles = theme => ({
         transform: 'rotate(0deg)',
         marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
+            duration: theme.transitions.duration.shortest,
         }),
     },
     expandOpen: {
@@ -53,6 +51,7 @@ const styles = theme => ({
     },
     button: {
         margin: theme.spacing(2),
+        backgroundColor: theme.palette.secondary.dark
     },
     itemContainer: {
         display: 'flex',
@@ -86,14 +85,12 @@ const styles = theme => ({
         }
     },
     inlineLeft: {
-        width: '30%',
-        textAlign: 'left',
-        marginLeft: 20,
+        marginLeft: 10,
         alignSelf: 'flex-start',
         [theme.breakpoints.down('sm')]: {
-          width: '100%',
-          margin: 0,
-          textAlign: 'center'
+            width: '100%',
+            margin: 0,
+            textAlign: 'center'
         }
     },
 });
@@ -162,7 +159,10 @@ function UrlCard({classes}) {
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
-                <CardHeader title="allun.ga" />
+                <CardHeader 
+                    title="Allun.ga" 
+                    subheader="Succint URL shortner"
+                />
                 <CardContent>
                     <div className={classes.itemContainer}>
                         <div className={classes.baseline}>
@@ -206,7 +206,6 @@ function UrlCard({classes}) {
                                 <Button 
                                 className={classes.button}
                                 variant="contained" 
-                                color="secondary" 
                                 size="large"
                                 onClick={e => handleSubmit(e)}
                                 >

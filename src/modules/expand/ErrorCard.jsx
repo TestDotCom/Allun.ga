@@ -6,7 +6,6 @@ import {
     Card,
     CardContent,
     CardMedia,
-    Grid,
     Link
 } from '@material-ui/core';
 
@@ -17,9 +16,9 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         overflow: 'hidden',
-        //marginTop: 20,
         padding: 20,
-        //paddingBottom: "100%"
+        marginTop: 20,
+        marginBottom: 20,
     },
     card: {
         padding: theme.spacing(2),
@@ -28,51 +27,38 @@ const styles = theme => ({
         height: 320,
     },
     link: {
-        color: theme.palette.primary.text,
+        color: theme.palette.primary.light,
     },
 });
 
 function ErrorCard({classes, errorMsg}) {
     return(
         <div className={classes.root}>
-            <Grid container justify="center"> 
-                <Grid 
-                    container
-                    spacing={10} 
-                    alignItems="center" 
-                    justify="center"
-                >
-                    <Grid item xs={12}>
-                        <Card className={classes.paper}>
-                            { errorMsg == 404 ?
-                                <CardMedia
-                                    className={classes.media}
-                                    image={error404}
-                                    title="Bob Ross"
-                                /> :
-                                <CardMedia
-                                    className={classes.media}
-                                    image={error503}
-                                    title="Bob Ross"
-                                /> 
-                            }
-                            <CardContent align="center">
-                                <Link
-                                    className={classes.link}
-                                    component="button"
-                                    variant="body1"
-                                    //color="secondary"
-                                    onClick={() => 
-                                        window.location.replace("https://allun.ga")
-                                    }
-                                >
-                                    Just a little brush here... and you're back
-                                </Link>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </Grid>
+            <Card className={classes.paper}>
+                { errorMsg == 404 ?
+                    <CardMedia
+                        className={classes.media}
+                        image={error404}
+                        title="Bob Ross"
+                    /> :
+                    <CardMedia
+                        className={classes.media}
+                        image={error503}
+                        title="Bob Ross"
+                    /> 
+                }
+                <CardContent align="center">
+                    <Link
+                        className={classes.link}
+                        variant="body1"
+                        href={'https://allun.ga'}
+                    >
+                        <strong>
+                            Just a little brush here... and you're back
+                        </strong>
+                    </Link>
+                </CardContent>
+            </Card>
         </div>
     );
 }

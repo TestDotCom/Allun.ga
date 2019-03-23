@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
 import { 
     Grid,
     withStyles
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import TopBar from './TopBar';
-import UrlCard from './UrlCard';
+import TopBar from "./TopBar";
+import UrlCard from "./UrlCard";
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        overflow: 'hidden',
+        overflow: "hidden",
         marginTop: 20,
         marginBottom: 20,
     },
-})
+});
 
 const Main = props => {
     return(
@@ -35,6 +35,6 @@ const Main = props => {
             </Grid>
         </div>
     );
-}
+};
 
 export default withStyles(styles)(Main);

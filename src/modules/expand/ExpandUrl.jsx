@@ -1,38 +1,38 @@
-import React, { useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, {useState, Fragment} from "react";
+import PropTypes from "prop-types";
 
-import ErrorCard from './ErrorCard';
-import Firestore from '../util/Firestore';
+import ErrorCard from "./ErrorCard";
+import Firestore from "../util/Firestore";
 
 function ExpandUrl({location}) {
-    const [errorMsg, setErrorMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState("");
 
-    const shrinked = location.pathname.replace(/\//g, '');
-    const docRef = Firestore.collection('urlMap').doc(shrinked);
+    const shrinked = location.pathname.replace(/\//g, "");
+    const docRef = Firestore.collection("urlMap").doc(shrinked);
 
     docRef.get()
         .then(doc => {
             if (doc.exists) {
-                if (process.env.NODE_ENV !== 'production') {
+                if (process.env.NODE_ENV !== "production") {
                     console.log(doc.data());
                 }
-                window.location.replace(doc.data()['expanded']);
+                window.location.replace(doc.data()["expanded"]);
             } else {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.log('no document');
+                if (process.env.NODE_ENV !== "production") {
+                    console.log("no document");
                 }
                 setErrorMsg(404);
             }
         })
         .catch(e => {
-            if (process.env.NODE_ENV !== 'production') {
-                console.log(error)
+            if (process.env.NODE_ENV !== "production") {
+                console.log(error);
             }
             setErrorMsg(503);
         });
         
     return (
-        errorMsg == '' ?
+        errorMsg == "" ?
             null :
             <Fragment>
                 <ErrorCard errorMsg={errorMsg} />

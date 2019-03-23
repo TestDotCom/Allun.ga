@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import crc32 from 'crc/crc32';
+import React, {useState, useEffect} from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import crc32 from "crc/crc32";
 
 import { 
     withStyles,
@@ -15,12 +15,12 @@ import {
     TextField,
     Button,
     InputAdornment
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import Firestore from '../util/Firestore';
-import urlRegex from '../util/UrlRegex';
+import Firestore from "../util/Firestore";
+import urlRegex from "../util/UrlRegex";
 
 const styles = theme => ({
     root: {
@@ -30,20 +30,20 @@ const styles = theme => ({
         //minWidth: 200,
         //maxHeight: 600,
         padding: theme.spacing(1),
-        textAlign: 'left',
+        textAlign: "left",
     },
     actions: {
-        display: 'flex',
+        display: "flex",
     },
     expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
+        transform: "rotate(0deg)",
+        marginLeft: "auto",
+        transition: theme.transitions.create("transform", {
             duration: theme.transitions.duration.shortest,
         }),
     },
     expandOpen: {
-        transform: 'rotate(180deg)',
+        transform: "rotate(180deg)",
     },
     textField: {
         marginLeft: theme.spacing(1),
@@ -54,107 +54,107 @@ const styles = theme => ({
         backgroundColor: theme.palette.secondary.dark
     },
     itemContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        [theme.breakpoints.down('sm')]: {
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center'
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        [theme.breakpoints.down("sm")]: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center"
         }
     },
     baseline: {
-        alignSelf: 'baseline',
+        alignSelf: "baseline",
         marginLeft: theme.spacing(2),
-        [theme.breakpoints.down('sm')]: {
-            display: 'flex',
-            flexDirection: 'column',
-            textAlign: 'center',
-            alignItems: 'center',
-            width: '100%',
+        [theme.breakpoints.down("sm")]: {
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center",
+            alignItems: "center",
+            width: "100%",
             marginTop: theme.spacing(2),
             marginBottom: theme.spacing(2),
             marginLeft: 0
         }
     },
     inline: {
-        display: 'inline-block',
+        display: "inline-block",
         marginLeft: theme.spacing(2),
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down("sm")]: {
             marginLeft: 0
         }
     },
     inlineLeft: {
         marginLeft: 10,
-        alignSelf: 'flex-start',
-        [theme.breakpoints.down('sm')]: {
-            width: '100%',
+        alignSelf: "flex-start",
+        [theme.breakpoints.down("sm")]: {
+            width: "100%",
             margin: 0,
-            textAlign: 'center'
+            textAlign: "center"
         }
     },
 });
 
 function UrlCard({classes}) {
     const [expanded, setExpanded] = useState(false);
-    const [url, setUrl] = useState('');
-    const [keyword, setKeyword] = useState('');
-    const [result, setResult] = useState('');
-    const [error, setError] = useState('');
+    const [url, setUrl] = useState("");
+    const [keyword, setKeyword] = useState("");
+    const [result, setResult] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = e => {
         e.preventDefault();
 
         if (!urlRegex.test(url)) {
-            setError('Insert a valid URL');
+            setError("Insert a valid URL");
             return;
         }
 
         // flush past errors
-        setError('');
+        setError("");
 
-        if (keyword != '') {
+        if (keyword != "") {
             const query = Firestore.collection("urlMap").where(
-                'shrinked', '==', keyword
-            )
+                "shrinked", "==", keyword
+            );
     
             query.get().then(querySnap => {
                 if (querySnap.empty) {
                     setResult(keyword);
                 } else {
-                    setError('Keyword already in use');
+                    setError("Keyword already in use");
                 }
             })
             .catch(e => {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.log(e)
+                if (process.env.NODE_ENV !== "production") {
+                    console.log(e);
                 }
-                setError('Something went wrong');
+                setError("Something went wrong");
             });
         } else {
             setResult(crc32(url).toString(16));
         }
-    }
+    };
 
     useEffect(() => {
-        if (result != '') {
+        if (result != "") {
             Firestore.collection("urlMap").doc(result).set({
                 expanded: url,
                 shrinked: result
             })
             .then(() => {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.log("doc written")
+                if (process.env.NODE_ENV !== "production") {
+                    console.log("doc written");
                 }
             })
             .catch(e => {
-                if (process.env.NODE_ENV !== 'production') {
-                    console.log(e)
+                if (process.env.NODE_ENV !== "production") {
+                    console.log(e);
                 }
-                setError('Something went wrong');
+                setError("Something went wrong");
             });
         }
-    }, [result])
+    }, [result]);
 
     return (
         <div className={classes.root}>
@@ -179,7 +179,7 @@ function UrlCard({classes}) {
                                     value={url}
                                     onChange={e => setUrl(e.target.value)}
                                 />
-                                { error == '' ? 
+                                { error == "" ? 
                                     <TextField
                                         className={classes.textField}
                                         id="outlined-read-only-input"
@@ -187,8 +187,8 @@ function UrlCard({classes}) {
                                         //aria-label="Shortned URL"
                                         margin="normal"
                                         variant="outlined"
-                                        InputProps={{ readOnly: true }}
-                                        value={'allun.ga/' + result}
+                                        InputProps={{readOnly: true}}
+                                        value={"allun.ga/" + result}
                                     /> : 
                                     <TextField
                                         error
@@ -253,7 +253,7 @@ function UrlCard({classes}) {
                                         aria-label="Customize your URL"
                                         variant="outlined"
                                         autoComplete="off"
-                                        InputProps={{ startAdornment: 
+                                        InputProps={{startAdornment: 
                                             <InputAdornment position="start">
                                                 allun.ga/
                                             </InputAdornment>,

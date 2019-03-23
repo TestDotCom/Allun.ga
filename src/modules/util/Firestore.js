@@ -1,5 +1,5 @@
-import app from 'firebase/app';
-import 'firebase/firestore'
+import app from "firebase/app";
+import "firebase/firestore";
 
 const config = {
     apiKey: process.env.apiKey,

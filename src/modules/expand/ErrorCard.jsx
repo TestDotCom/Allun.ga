@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 import { 
     withStyles,
@@ -7,15 +7,15 @@ import {
     CardContent,
     CardMedia,
     Link
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import error404 from '../../img/error_404.png';
-import error503 from '../../img/error_503.png';
+import error404 from "../../img/error_404.png";
+import error503 from "../../img/error_503.png";
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        overflow: 'hidden',
+        overflow: "hidden",
         padding: 20,
         marginTop: 20,
         marginBottom: 20,
@@ -51,7 +51,7 @@ function ErrorCard({classes, errorMsg}) {
                     <Link
                         className={classes.link}
                         variant="body1"
-                        href={'https://allun.ga'}
+                        href={"https://allun.ga"}
                     >
                         <strong>
                             Just a little brush here... and you're back

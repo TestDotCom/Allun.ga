@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment} from "react";
 
 import {
     Button,
@@ -7,7 +7,7 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 function AboutDialog() {
     const [open, setOpen] = useState(false);

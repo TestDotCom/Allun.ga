@@ -1,15 +1,15 @@
-import React, { Suspense, lazy } from 'react';
+import React, {Suspense, lazy} from "react";
 import {
     BrowserRouter,
     Switch, 
     Route 
-} from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
+} from "react-router-dom";
+import {hot} from "react-hot-loader/root";
 
-import withRoot from './withRoot';
+import withRoot from "./withRoot";
 
-const Main = lazy(() => import('./shrink/Main'));
-const ExpandUrl = lazy(() => import('./expand/ExpandUrl'));
+const Main = lazy(() => import("./shrink/Main"));
+const ExpandUrl = lazy(() => import("./expand/ExpandUrl"));
 
 function App() {
     return(

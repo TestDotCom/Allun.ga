@@ -19,7 +19,7 @@ function AboutDialog() {
             <Button 
                 color='secondary'
                 onClick={handleClick}>
-                about
+                <strong>about</strong>
             </Button>
             <Dialog
                 aria-labelledby="scroll-dialog-title"
@@ -52,7 +52,7 @@ function AboutDialog() {
                         color="primary"
                         onClick={() => setOpen(false)}
                     >
-                        Got it!
+                        <strong>Got it!</strong>
                     </Button>
                 </DialogActions>
             </Dialog>

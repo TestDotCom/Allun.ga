@@ -5,18 +5,24 @@ import {withStyles} from "@material-ui/core/styles";
 import {
     AppBar,
     Toolbar,
-    Button
+    Button,
+    Avatar
 } from "@material-ui/core";
 
 import AboutDialog from "./AboutDialog";
 
-const styles = {
-  root: {
-    flexGrow: 1,
-    rounded: true,
-    //minWidth: 210,
-  },
+import logo from "../../img/logo_small.png"
 
+const styles = {
+    root: {
+        flexGrow: 1,
+        rounded: true,
+        //minWidth: 210,
+    },
+    avatar: {
+        marginLeft: 4,
+        marginRight: 8
+    },
 };
 
 function TopBar({classes}) {
@@ -27,6 +33,13 @@ function TopBar({classes}) {
         color="default"
     >
         <Toolbar>
+            <div>
+                <Avatar
+                    className={classes.avatar}
+                    alt="FlamingoSW"
+                    src={logo}
+                />
+            </div>
             <div>
                 <AboutDialog />
             </div>

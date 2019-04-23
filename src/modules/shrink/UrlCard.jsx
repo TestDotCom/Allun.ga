@@ -219,7 +219,7 @@ function UrlCard({classes}) {
                 </CardContent>
                 <CardActions 
                     className={classes.actions} 
-                    disableActionSpacing
+                    disableSpacing
                 >
                     <IconButton
                         className={clsx(classes.expand, {

@@ -71,23 +71,18 @@ if(TARGET === "start") {
             historyApiFallback: true,
         }
     });
-  }
+}
   
 if(TARGET === "build") {
     module.exports = merge(common, {
         mode: "production",
-        //devtool: 'source-map',
         optimization: {
             minimizer: [
                 new TerserPlugin({
                     cache: true,
-                    parallel: true,
-                    //sourceMap: true,
+                    parallel: true
                 }),
-            ],
-            //splitChunks: {
-                //chunks: 'all'
-            //},
+            ]
         },
     });
 }

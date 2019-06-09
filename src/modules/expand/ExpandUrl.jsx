@@ -26,7 +26,7 @@ function ExpandUrl({location}) {
         })
         .catch(e => {
             if (process.env.NODE_ENV !== "production") {
-                console.log(error);
+                console.log(e);
             }
             setErrorMsg(503);
         });

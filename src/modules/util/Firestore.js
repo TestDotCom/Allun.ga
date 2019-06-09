@@ -1,15 +1,16 @@
-import app from "firebase/app";
+import * as firebase from "firebase/app";
 import "firebase/firestore";
+
 
 const config = {
     apiKey: process.env.apiKey,
     authDomain: process.env.authDomain,
     databaseURL: process.env.databaseURL,
-    projectId: process.env.projectId,
+    projectId: 'allun-ga',  // does not work from .env
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId
 };
 
-app.initializeApp(config);
+firebase.initializeApp(config);
 
-export default app.firestore();
+export default firebase.firestore();

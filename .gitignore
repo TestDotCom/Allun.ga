@@ -1,8 +1,8 @@
 #### Project ####
 .DS_STORE
+.directory
 .env
-
-#### ReactJS ####
+.eslintrc.js
 node_modules/
 build/
 
@@ -10,3 +10,6 @@ build/
 .firebase
 .firebaserc
 firebase.json
+firestore.indexes.json
+firestore.rules
+firebase-debug.log

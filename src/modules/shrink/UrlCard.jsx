@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import crc32 from "crc/crc32";
+import isURL from "validator/lib/isURL";
 
 import { 
     withStyles,
@@ -20,7 +21,20 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import Firestore from "../util/Firestore";
-import urlRegex from "../util/UrlRegex";
+
+const urlOpts = {
+    protocols: ['http', 'https'],
+    require_tld: true, 
+    require_protocol: true, 
+    require_host: true, 
+    require_valid_protocol: true, 
+    allow_underscores: false, 
+    host_whitelist: false, 
+    host_blacklist: false, 
+    allow_trailing_dot: false, 
+    allow_protocol_relative_urls: false, 
+    disallow_auth: false
+}
 
 const styles = theme => ({
     root: {
@@ -105,7 +119,7 @@ function UrlCard({classes}) {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (!urlRegex.test(url)) {
+        if (!isURL(url, urlOpts)) {
             setError("Insert a valid URL");
             return;
         }

@@ -28,7 +28,7 @@ var common = {
                         plugins: [
                             "react-hot-loader/babel",
                             "@babel/plugin-transform-arrow-functions",
-                            "syntax-dynamic-import",
+                            "@babel/plugin-syntax-dynamic-import",
                         ]
                     }
                 }

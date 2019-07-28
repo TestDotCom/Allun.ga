@@ -22,7 +22,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import Firestore from "../util/Firestore";
 
-const urlOpts = {
+/*const urlOpts = {
     protocols: ['http', 'https'],
     require_tld: true, 
     require_protocol: true, 
@@ -34,7 +34,7 @@ const urlOpts = {
     allow_trailing_dot: false, 
     allow_protocol_relative_urls: false, 
     disallow_auth: false
-}
+}*/
 
 const styles = theme => ({
     root: {
@@ -119,7 +119,7 @@ function UrlCard({classes}) {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (!isURL(url, urlOpts)) {
+        if (!isURL(url)) {
             setError("Insert a valid URL");
             return;
         }

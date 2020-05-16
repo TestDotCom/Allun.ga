@@ -1,10 +1,8 @@
 #### Project ####
 .DS_STORE
-.directory
 .env
-.eslintrc.js
 node_modules/
-build/
+dist/
 
 #### Firebase ####
 .firebase

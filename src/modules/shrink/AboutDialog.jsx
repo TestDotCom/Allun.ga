@@ -61,4 +61,3 @@ function AboutDialog() {
 }
 
 export default AboutDialog;
-

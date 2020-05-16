@@ -1,4 +1,4 @@
-![logo](logo_xs.png) ![qrcode](qrcode_xs.png)
+![logo](assets/logo_xs.png) ![qrcode](assets/qrcode_xs.png)
 
 # Allun.ga
 
@@ -6,7 +6,7 @@ Modern URL shortner - succint UX, elegant Material-UI
 
 ## Something about us
 
-Allun.ga is an italian {open source, succint, vaporwave, material-design} based URL shortner, written in ReactJS.
+Allun.ga is an italian {open source, succint, vaporwave, material-design} URL shortner, written in ReactJS.
 
 Allun.ga's name come from an italian verb which means 'to extend', we choose it to create the domain hack and obviously the wordplay.
 
@@ -21,15 +21,25 @@ Feel free to use Allun.ga to shorten your url, but remember that we are in beta,
 
 ## Setup
 
-First install dependencies:
+First install npm dependencies:
 
 ```sh
 npm install
 ```
 
+Then install firebase-cli (you'll need a google account):
+
+[follow these steps](https://firebase.google.com/docs/web/setup)
+
 ## Running on localhost
 
-To run in hot module reloading mode:
+First build the webapp:
+
+```sh
+npm run build
+```
+
+Then serve it from firebase-cli:
 
 ```sh
 npm start
@@ -37,13 +47,13 @@ npm start
 
 ## Running on Firebase
 
-To create a production build:
+Remember to build the webapp:
 
 ```sh
 npm run build
 ```
 
-To upload on your firebase (remeber to setup it!)
+Then upload on firebase (remeber to setup it!)
 
 ```sh
 npm run deploy

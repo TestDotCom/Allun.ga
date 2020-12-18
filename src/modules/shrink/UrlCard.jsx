@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import crc32 from "crc/crc32";
@@ -22,27 +22,16 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import Firestore from "../util/Firestore";
 
-/*const urlOpts = {
+const urlOpts = {
     protocols: ['http', 'https'],
-    require_tld: true, 
     require_protocol: true, 
-    require_host: true, 
-    require_valid_protocol: true, 
-    allow_underscores: false, 
-    host_whitelist: false, 
-    host_blacklist: false, 
-    allow_trailing_dot: false, 
-    allow_protocol_relative_urls: false, 
-    disallow_auth: false
-}*/
+};
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
     },
     card: {
-        //minWidth: 200,
-        //maxHeight: 600,
         padding: theme.spacing(1),
         textAlign: "left",
     },
@@ -119,7 +108,7 @@ function UrlCard({classes}) {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (!isURL(url)) {
+        if (!isURL(url, urlOpts)) {
             setError("Insert a valid URL");
             return;
         }
@@ -140,9 +129,10 @@ function UrlCard({classes}) {
                 }
             })
             .catch(e => {
-                if (process.env.NODE_ENV !== "production") {
+                if (process.env.NODE_ENV === "development") {
                     console.log(e);
                 }
+
                 setError("Something went wrong");
             });
         } else {
@@ -157,14 +147,15 @@ function UrlCard({classes}) {
                 shrinked: result
             })
             .then(() => {
-                if (process.env.NODE_ENV !== "production") {
+                if (process.env.NODE_ENV === "development") {
                     console.log("doc written");
                 }
             })
             .catch(e => {
-                if (process.env.NODE_ENV !== "production") {
+                if (process.env.NODE_ENV === "development") {
                     console.log(e);
                 }
+                
                 setError("Something went wrong");
             });
         }

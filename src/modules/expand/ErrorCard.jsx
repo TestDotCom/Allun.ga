@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 import { 
@@ -9,8 +8,8 @@ import {
     Link
 } from "@material-ui/core";
 
-import error404 from "../../img/error_404.png";
-import error503 from "../../img/error_503.png";
+const error404 = new URL("../../img/error_404.png", import.meta.url).toString();
+const error503 = new URL("../../img/error_503.png", import.meta.url).toString();
 
 const styles = theme => ({
     root: {

@@ -1,74 +1,48 @@
 const path = require("path");
-const merge = require("webpack-merge");
-const TerserPlugin = require("terser-webpack-plugin");
+const { merge } = require('webpack-merge');
 const Dotenv = require("dotenv-webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-var TARGET = process.env.npm_lifecycle_event;
-
-var common = {
-    entry: "./src/Index.jsx",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
-    },
+const common = {
+    entry: path.resolve(__dirname, 'src/Index.jsx'),
+    output: { path: path.resolve(__dirname, 'dist') },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/, exclude: /node_modules/,
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
                 loader: "babel-loader"
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: {
-                    loader: "file-loader",
-                    options: {},
-                },
-              },
+            }
         ]
     },
     resolve: {
-        extensions: [
-            ".js",
-            ".jsx"
-        ],
-        alias: {
-            "react-dom": "@hot-loader/react-dom"
-        }
+        extensions: [".js", ".jsx"]
     },
     plugins: [
         new Dotenv(),
         new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            favicon: "src/img/favicon.ico",
+            template: path.resolve(__dirname, 'src/index.html'),
+            favicon: path.resolve(__dirname, 'src/img/favicon.ico'),
         }),
-        new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: ['dist'] }),
-    ],
+        new CleanWebpackPlugin(),
+    ]
 };
 
-if(TARGET === "start") {
-    module.exports = merge(common, {
-        mode: "development",
-        devtool: "inline-source-map",
-        devServer: {
-            contentBase: "./dist",
-            // required for routing
-            historyApiFallback: true,
-        }
-    });
-}
-  
-if(TARGET === "build") {
-    module.exports = merge(common, {
-        mode: "production",
-        optimization: {
-            minimizer: [
-                new TerserPlugin({
-                    cache: true,
-                    parallel: true
-                }),
-            ]
-        },
-    });
+const devel = {
+    mode: "development",
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        // required for routing
+        historyApiFallback: true,
+    },
+    devtool: 'eval-source-map'
+};
+
+module.exports = env => {
+    if (env === 'development') {
+        return merge(common, devel)
+    }
+
+    return common
 }

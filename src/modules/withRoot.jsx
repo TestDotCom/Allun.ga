@@ -1,15 +1,8 @@
-import React from "react";
-
-import {ThemeProvider} from "@material-ui/styles";
-
-import {createMuiTheme} from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { cyan, pink } from "@material-ui/core/colors"
 
-import cyan from "@material-ui/core/colors/cyan";
-import pink from "@material-ui/core/colors/pink";
 
-// A theme with custom primary and secondary color.
-// It's optional.
 const theme = createMuiTheme({
     palette: {
         type: "dark",

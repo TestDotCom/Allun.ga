@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from "react";
+import { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import ErrorCard from "./ErrorCard";
@@ -13,21 +13,24 @@ function ExpandUrl({location}) {
     docRef.get()
         .then(doc => {
             if (doc.exists) {
-                if (process.env.NODE_ENV !== "production") {
+                if (process.env.NODE_ENV === "development") {
                     console.log(doc.data());
                 }
+
                 window.location.replace(doc.data()["expanded"]);
             } else {
-                if (process.env.NODE_ENV !== "production") {
+                if (process.env.NODE_ENV === "development") {
                     console.log("no document");
                 }
+
                 setErrorMsg(404);
             }
         })
         .catch(e => {
-            if (process.env.NODE_ENV !== "production") {
+            if (process.env.NODE_ENV === "development") {
                 console.log(e);
             }
+
             setErrorMsg(503);
         });
         

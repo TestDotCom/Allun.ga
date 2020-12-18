@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 import {withStyles} from "@material-ui/core/styles";
@@ -11,13 +10,12 @@ import {
 
 import AboutDialog from "./AboutDialog";
 
-import logo from "../../img/logo_small.png"
+const logo = new URL("../../img/logo_small.png", import.meta.url).toString();
 
 const styles = {
     root: {
         flexGrow: 1,
         rounded: true,
-        //minWidth: 210,
     },
     avatar: {
         marginLeft: 4,

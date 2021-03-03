@@ -21,10 +21,12 @@ Feel free to use Allun.ga to shorten your url, but remember that we are in beta,
 
 ## Setup
 
+We recommend you install packages through [npx](https://www.npmjs.com/package/npx)
+
 First install npm dependencies:
 
 ```sh
-npm install
+npx npm install
 ```
 
 Then install firebase-cli (you'll need a google account):
@@ -45,7 +47,10 @@ Then serve it from firebase-cli:
 npm start
 ```
 
-## Running on Firebase
+## Deploying on Firebase
+
+First fill the .env file with your 
+project configuration
 
 Remember to build the webapp:
 

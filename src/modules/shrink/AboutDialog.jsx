@@ -32,7 +32,10 @@ function AboutDialog() {
                 </DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
-                        Allun.ga is an italian [open source, succint, vaporwave, material-design] based URL shortner, written in ReactJS.
+                        Allun.ga is an italian [open source, succint, vaporwave, material-design] based content hub, written in ReactJS.
+                    </DialogContentText>
+					<DialogContentText gutterBottom>
+                        We offer various linking service like the url-shortner, the amazon deals channel, and more other are in progress and will be available later.
                     </DialogContentText>
                     <DialogContentText>
                         Allun.ga's name come from an italian verb which means 'to extend', we choose it to create the domain hack and obviously the wordplay.
@@ -41,10 +44,7 @@ function AboutDialog() {
                         Allun.ga is <strong>against</strong> racism, women harassment, pineapple bacon pizza and, of course, light themes in IDEs.
                     </DialogContentText>
                     <DialogContentText gutterBottom>
-                        Feel free to use Allun.ga to shorten your url, but remember that we are in beta, so be patient if something doesn't work properly: open an issue on our Github repo, we'll work on it ;)
-                    </DialogContentText>
-                    <DialogContentText gutterBottom>
-                        R.I.P. Harambe, Bob Ross, Stephen Hillenburg, Stan Lee, Stephen Hawkins [...]
+                        Feel free to use Allun.ga to shorten your url, if something doesn't work properly feel free to open an issue on our Github repo, we'll work on it ;)
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

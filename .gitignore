@@ -1,12 +1,11 @@
-#### Project ####
-.DS_STORE
+.devcontainer/
+.firebase/
+.github/
 .env
-node_modules/
-dist/
-
-#### Firebase ####
-.firebase
 .firebaserc
+
+dist/
+node_modules/
 firestore.indexes.json
 firestore.rules
 firebase-debug.log

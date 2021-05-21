@@ -1,6 +1,6 @@
 {
     "name": "allun-ga",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "description": "Succint URL shortner",
     "repository": {
         "type": "git",
@@ -28,8 +28,6 @@
         "@material-ui/icons": "^4.11.2",
         "crc": "^3.8.0",
         "firebase": "^8.2.9",
-        "npm-check-updates": "^11.1.10",
-        "npm-update": "^2.1.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-router-dom": "^5.2.0",
@@ -44,6 +42,7 @@
         "dotenv-webpack": "^6.0.2",
         "eslint": "^7.21.0",
         "html-webpack-plugin": "^5.2.0",
+        "npm-check-updates": "^11.1.10",
         "prop-types": "^15.7.2",
         "webpack": "^5.24.2",
         "webpack-cli": "^4.5.0",

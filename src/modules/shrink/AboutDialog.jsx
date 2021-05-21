@@ -34,9 +34,6 @@ function AboutDialog() {
                     <DialogContentText>
                         Allun.ga is an italian [open source, succint, vaporwave, material-design] based content hub, written in ReactJS.
                     </DialogContentText>
-					<DialogContentText gutterBottom>
-                        We offer various linking service like the url-shortner, the amazon deals channel, and more other are in progress and will be available later.
-                    </DialogContentText>
                     <DialogContentText>
                         Allun.ga's name come from an italian verb which means 'to extend', we choose it to create the domain hack and obviously the wordplay.
                     </DialogContentText>
